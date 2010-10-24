@@ -1,0 +1,5 @@
+glob:_ReSharper.*
+glob:XadesNet.suo
+glob:*/obj/*
+glob:*/bin/*
+glob:*.ReSharper.*

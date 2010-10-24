@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XadesNet", "XadesNet\XadesNet.csproj", "{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "..\Utils\Utils\Utils.csproj", "{39112952-CC82-4508-98B7-056090A2175A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XadesNetLib", "XadesNetLib\XadesNetLib.csproj", "{041B6B99-B4AF-4A68-918F-03FCC9999FCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39112952-CC82-4508-98B7-056090A2175A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39112952-CC82-4508-98B7-056090A2175A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39112952-CC82-4508-98B7-056090A2175A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39112952-CC82-4508-98B7-056090A2175A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

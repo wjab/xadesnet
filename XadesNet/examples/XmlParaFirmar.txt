@@ -1,0 +1,11 @@
+<?xml version ='1.0' encoding='ISO-8859-1'?>
+<proyecto>
+	<datos>
+		<nombre>XaddesNet</nombre>
+		<version>1.0</version>
+	</datos>
+	<equipo>
+		<persona>Victor Manuel Villa Palomino</persona>
+		<persona>Luis Miguel Villa Palomino</persona>
+	</equipo>
+</proyecto>
