@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<proyecto>
+  <datos>
+    <nombre>XaddesNet</nombre>
+    <version>1.0</version>
+  </datos>
+  <equipo>
+    <persona>Victor Manuel Villa Palomino</persona>
+    <persona>Luis Miguel Villa Palomino</persona>
+  </equipo>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>KM+99adOD4WX/EaFd7ckhhE/UCw=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>ecx4dan740le66QetzonZuMtJZYBOjf5bXvXsC1+dMGrvse488yFQXhMSZiQdHPo8+0Oy/Yb2VmlU95OkNu1ZOJ5DVca/gmvsF6EY8l2gMpgPQWSZRFIAngpFi4RU/sdjzoB0kacoLbU+bxQjsKVFBqb4CZPQrGcTtY1JCnngCE=</SignatureValue>
+    <KeyInfo>
+      <X509Data>
+        <X509Certificate>MIIFQzCCBKygAwIBAgIEPKDY5zANBgkqhkiG9w0BAQUFADA2MQswCQYDVQQGEwJFUzENMAsGA1UEChMERk5NVDEYMBYGA1UECxMPRk5NVCBDbGFzZSAyIENBMB4XDTA4MDUyODA3MDEzMFoXDTExMDUyODA3MDEzMFowgYgxCzAJBgNVBAYTAkVTMQ0wCwYDVQQKEwRGTk1UMRgwFgYDVQQLEw9GTk1UIENsYXNlIDIgQ0ExEjAQBgNVBAsTCTUwMDAxMDExMzE8MDoGA1UEAxMzTk9NQlJFIFZJTExBIFBBTE9NSU5PIFZJQ1RPUiBNQU5VRUwgLSBOSUYgMzU0NjM4MDBQMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCvXss5cM218HKWKQHU8L9LkXNf8s01KN7fuvs9SQsIW6Eydcw2x6VrJOe+56bXKmZSfs/5aC3wGFCqsqly7TWKuYz/TfuNQVmWx2I6NfNgYU3xUw3GHKRS9Ozw8EpjH1yvn/pJJvwRZQjWMdsRaJcrCpAt0fWMXK/9U/yNz54ddwIDAQABo4IDCTCCAwUwgYgGA1UdEQSBgDB+gRFWVklMTEFQQEdNQUlMLkNPTaRpMGcxGDAWBgkrBgEEAaxmAQQTCTM1NDYzODAwUDEXMBUGCSsGAQQBrGYBAxMIUEFMT01JTk8xFDASBgkrBgEEAaxmAQITBVZJTExBMRwwGgYJKwYBBAGsZgEBEw1WSUNUT1IgTUFOVUVMMAkGA1UdEwQCMAAwKwYDVR0QBCQwIoAPMjAwODA1MjgwNzAxMzBagQ8yMDExMDUyODA3MDEzMFowCwYDVR0PBAQDAgWgMBEGCWCGSAGG+EIBAQQEAwIFoDAdBgNVHQ4EFgQUR6Sp7XeoNqHQkAs8fdE+kzHXvGIwHwYDVR0jBBgwFoAUQJp2RJd0B8SsFMsejU86RXww12EwggExBgNVHSAEggEoMIIBJDCCASAGCSsGAQQBrGYDBTCCAREwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cuY2VydC5mbm10LmVzL2NvbnZlbmlvL2RwYy5wZGYwgdgGCCsGAQUFBwICMIHLGoHIQ2VydGlmaWNhZG8gUmVjb25vY2lkbyBleHBlZGlkbyBzZWf6biBsZWdpc2xhY2nzbiB2aWdlbnRlLlVzbyBsaW1pdGFkbyBhIGxhIENvbXVuaWRhZCBFbGVjdHLzbmljYSBwb3IgdmFsb3IgbeF4aW1vIGRlIDEwMCBlIHNhbHZvIGV4Y2VwY2lvbmVzIGVuIERQQy5Db250YWN0byBGTk1UOkMvSm9yZ2UgSnVhbiAxMDYtMjgwMDktTWFkcmlkLUVzcGHxYS4wHQYJKwYBBAGsZgEhBBAWDlBFUlNPTkEgRklTSUNBMC8GCCsGAQUFBwEDBCMwITAIBgYEAI5GAQEwFQYGBACORgECMAsTA0VVUgIBZAIBADBbBgNVHR8EVDBSMFCgTqBMpEowSDELMAkGA1UEBhMCRVMxDTALBgNVBAoTBEZOTVQxGDAWBgNVBAsTD0ZOTVQgQ2xhc2UgMiBDQTEQMA4GA1UEAxMHQ1JMNDY3NDANBgkqhkiG9w0BAQUFAAOBgQAU0GxrZzx/pfwmO2PQDlQd7a0cSGEI4LX15H/s4GoHoNEPteEPr9XBtPIkla7MqRxLz5ODpX1pFmVPYpbgNDDGau45FRsgOtmafLAeD/3mDaK9MpvyM4PMAB0y0jXhEkaJrL8tC2M9OQKazn6XWXbbqhI6tIdiuDNdanpv8dgFUw==</X509Certificate>
+      </X509Data>
+    </KeyInfo>
+  </Signature>
+</proyecto>

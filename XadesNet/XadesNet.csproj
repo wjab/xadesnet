@@ -81,17 +81,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ejemplos\XmlFirmado.txt" />
-    <Content Include="ejemplos\XmlParaFirmar.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\XadesNetLib\XadesNetLib.csproj">
       <Project>{041B6B99-B4AF-4A68-918F-03FCC9999FCD}</Project>
       <Name>XadesNetLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="xmlsig\" />
+    <Content Include="examples\XmlFirmado.txt" />
+    <Content Include="examples\XmlParaFirmar.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

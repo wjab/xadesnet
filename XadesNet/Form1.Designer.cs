@@ -39,6 +39,8 @@
             this.btnBrowseOutputFile = new System.Windows.Forms.Button();
             this.txtOutputFile = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.cmbSignatureFormat = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSign
@@ -66,6 +68,7 @@
             // 
             // cmbSignCertificate
             // 
+            this.cmbSignCertificate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSignCertificate.FormattingEnabled = true;
             this.cmbSignCertificate.Location = new System.Drawing.Point(20, 177);
             this.cmbSignCertificate.Name = "cmbSignCertificate";
@@ -124,11 +127,31 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Output file:";
             // 
+            // cmbSignatureFormat
+            // 
+            this.cmbSignatureFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSignatureFormat.FormattingEnabled = true;
+            this.cmbSignatureFormat.Location = new System.Drawing.Point(261, 177);
+            this.cmbSignatureFormat.Name = "cmbSignatureFormat";
+            this.cmbSignatureFormat.Size = new System.Drawing.Size(203, 21);
+            this.cmbSignatureFormat.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(258, 161);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Signature Format";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 280);
+            this.Controls.Add(this.cmbSignatureFormat);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnBrowseOutputFile);
             this.Controls.Add(this.txtOutputFile);
             this.Controls.Add(this.label3);
@@ -159,6 +182,8 @@
         private System.Windows.Forms.Button btnBrowseOutputFile;
         private System.Windows.Forms.TextBox txtOutputFile;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbSignatureFormat;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -12,10 +12,20 @@ namespace XadesNetLib.xmlDsig
         {
             Validate(signParameters);
 
-            var signature = GetSignature(signParameters.XmlDeEntrada, signParameters.CertificadoDeFirma);
-            var xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(signature.GetXml().OuterXml);
-            xmlDocument.Save(signParameters.PathSalida);
+            var signature = GetSignature(signParameters.XmlDeEntrada, signParameters.CertificadoDeFirma,
+                signParameters.FormatoDeFirma);
+            var signatureXml = signature.GetXml();
+            if (XmlDsigSignatureFormat.Enveloping.Equals(signParameters.FormatoDeFirma))
+            {
+                var xmlDocument = new XmlDocument();
+                xmlDocument.LoadXml(signatureXml.OuterXml);
+                xmlDocument.Save(signParameters.PathSalida);
+            }
+            if (XmlDsigSignatureFormat.Enveloped.Equals(signParameters.FormatoDeFirma))
+            {
+                signParameters.XmlDeEntrada.DocumentElement.AppendChild(signParameters.XmlDeEntrada.ImportNode(signatureXml, true));
+                signParameters.XmlDeEntrada.Save(signParameters.PathSalida);
+            }
         }
         public static bool ValidateDocument(XmlDsigValidationParameters validationParameters)
         {
@@ -68,27 +78,41 @@ namespace XadesNetLib.xmlDsig
             if (signParameters.XmlDeEntrada.DocumentElement == null) throw new Exception("Document to sign has no root element");
         }
 
-        private static SignedXml GetSignature(XmlDocument document, X509Certificate2 certificate)
+        private static SignedXml GetSignature(XmlDocument document, X509Certificate2 certificate, XmlDsigSignatureFormat format)
         {
             if (document.DocumentElement == null) throw new Exception("Document to sign has no root element");
 
             var signedXml = new SignedXml(document);
             var dataObject = new DataObject("message", "", "", document.DocumentElement);
 
-            signedXml.AddReference(CreateReference());
-            signedXml.AddObject(dataObject);
+            signedXml.AddReference(CreateReference(format));
+            if (XmlDsigSignatureFormat.Enveloping.Equals(format))
+            {
+                signedXml.AddObject(dataObject);
+            }
             signedXml.SigningKey = certificate.PrivateKey;
             signedXml.KeyInfo = CreateKeyInfo(certificate);
-            signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
+            if (XmlDsigSignatureFormat.Enveloping.Equals(format))
+            {
+                signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
+            }
             signedXml.ComputeSignature();
 
             return signedXml;
         }
 
-        private static Reference CreateReference()
+        private static Reference CreateReference(XmlDsigSignatureFormat format)
         {
-            var signatureReference = new Reference("#message");
-            signatureReference.AddTransform(new XmlDsigExcC14NTransform());
+            Reference signatureReference;
+            if (XmlDsigSignatureFormat.Enveloping.Equals(format))
+            {
+                signatureReference = new Reference("#message");
+                signatureReference.AddTransform(new XmlDsigExcC14NTransform());
+                return signatureReference;
+            }
+            signatureReference = new Reference();
+            signatureReference.Uri = "";
+            signatureReference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
             return signatureReference;
         }
 

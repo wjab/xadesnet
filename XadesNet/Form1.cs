@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
 using System.Security.Cryptography.X509Certificates;
@@ -16,31 +17,25 @@ namespace XadesNet
 
         private void btnFirmar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var documentoXml = new XmlDocument { PreserveWhitespace = false };
-                var inputPath = txtFileToSign.Text;
-                documentoXml.Load(inputPath);
-                var outputPath = txtOutputFile.Text;
-                XmlDsig.SignDocument(new XmlDsigSignParameters
+
+            var documentoXml = new XmlDocument { PreserveWhitespace = false };
+            var inputPath = txtFileToSign.Text;
+            documentoXml.Load(inputPath);
+            var outputPath = txtOutputFile.Text;
+            XmlDsig.SignDocument(new XmlDsigSignParameters
+                                     {
+                                         CertificadoDeFirma = (X509Certificate2)cmbSignCertificate.SelectedItem,
+                                         FormatoDeFirma = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem,
+                                         IncluirCertificadoEnFirma = true,
+                                         PathSalida = outputPath,
+                                         XmlDeEntrada = documentoXml
+                                     });
+            XmlDsig.ValidateDocument(new XmlDsigValidationParameters
                                          {
-                                             CertificadoDeFirma = (X509Certificate2)cmbSignCertificate.SelectedItem,
-                                             FormatoDeFirma = XmlDsigSignatureFormat.Enveloped,
-                                             IncluirCertificadoEnFirma = true,
-                                             PathSalida = outputPath,
-                                             XmlDeEntrada = documentoXml
+                                             PathDocumento = outputPath,
+                                             ValidarTambienElCertificado = true
                                          });
-                XmlDsig.ValidateDocument(new XmlDsigValidationParameters
-                                             {
-                                                 PathDocumento = outputPath,
-                                                 ValidarTambienElCertificado = true
-                                             });
-                MessageBox.Show(@"Signature created and validated successfully :)");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            MessageBox.Show(@"Signature created and validated successfully :)");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,6 +43,13 @@ namespace XadesNet
             var certificados = Certificates.GetCertificatesFrom(CertificateStore.My);
             cmbSignCertificate.DisplayMember = "Subject";
             cmbSignCertificate.DataSource = certificados;
+            var formats = new List<XmlDsigSignatureFormat>
+                              {
+                                  XmlDsigSignatureFormat.Detached,
+                                  XmlDsigSignatureFormat.Enveloped,
+                                  XmlDsigSignatureFormat.Enveloping
+                              };
+            cmbSignatureFormat.DataSource = formats;
         }
 
         private void btnBrowseFileToSign_Click(object sender, EventArgs e)
