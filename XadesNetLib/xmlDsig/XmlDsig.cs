@@ -3,14 +3,15 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
+using XadesNetLib.xmlDsig.dsl;
 
 namespace XadesNetLib.xmlDsig
 {
     public abstract class XmlDsig
     {
-        public static void SignDocument(XmlDsigSignParameters signParameters)
+        internal static void SignDocument(XmlDsigSignParameters signParameters)
         {
-            Validate(signParameters);
+            ValidateParameters(signParameters);
 
             var xmlAFirmar = new XmlDocument();
             xmlAFirmar.Load(signParameters.InputPath);
@@ -31,7 +32,7 @@ namespace XadesNetLib.xmlDsig
                 xmlAFirmar.Save(signParameters.OutputPath);
             }
         }
-        public static bool ValidateDocument(XmlDsigValidationParameters validationParameters)
+        internal static bool ValidateDocument(XmlDsigValidationParameters validationParameters)
         {
             var xmlDocument = new XmlDocument { PreserveWhitespace = false };
             xmlDocument.LoadXml(File.ReadAllText(validationParameters.InputPath));
@@ -77,14 +78,14 @@ namespace XadesNetLib.xmlDsig
                 }
             }
             if (validationCertificate == null) throw new Exception("Signer public key could not be found");
-            if (!newsignedXml.CheckSignature(validationCertificate, validationParameters.ValidateCertificate))
+            if (!newsignedXml.CheckSignature(validationCertificate, !validationParameters.ValidateCertificate))
             {
                 throw new InvalidOperationException("Signature is invalid.");
             }
             return true;
         }
 
-        private static void Validate(XmlDsigSignParameters signParameters)
+        private static void ValidateParameters(XmlDsigSignParameters signParameters)
         {
             if (signParameters == null) throw new InvalidParameterException("Parameters to sign cannot be null");
             if (signParameters.SignatureCertificate == null) throw new InvalidParameterException("Signer Certificate cannot be null");
@@ -133,6 +134,20 @@ namespace XadesNetLib.xmlDsig
             var certificateKeyInfo = new KeyInfo();
             certificateKeyInfo.AddClause(new KeyInfoX509Data(certificate));
             return certificateKeyInfo;
+        }
+
+        public static SignDSL Sign(string inputPath)
+        {
+            var signDsl = new SignDSL();
+            signDsl.InputPath(inputPath);
+            return signDsl;
+        }
+
+        public static ValidationDSL Validate(string signaturePath)
+        {
+            var validationDsl = new ValidationDSL();
+            validationDsl.SignaturePath(signaturePath);
+            return validationDsl;
         }
     }
 }

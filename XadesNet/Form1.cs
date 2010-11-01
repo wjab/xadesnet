@@ -17,19 +17,11 @@ namespace XadesNet
         private void btnFirmar_Click(object sender, EventArgs e)
         {
             var outputPath = txtOutputFile.Text;
-            XmlDsig.SignDocument(new XmlDsigSignParameters
-                                     {
-                                         SignatureCertificate = (X509Certificate2)cmbSignCertificate.SelectedItem,
-                                         SignatureFormat = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem,
-                                         IncludeCertificateInSignature = true,
-                                         OutputPath = outputPath,
-                                         InputPath = txtFileToSign.Text
-                                     });
-            XmlDsig.ValidateDocument(new XmlDsigValidationParameters
-                                         {
-                                             InputPath = outputPath,
-                                             ValidateCertificate = true
-                                         });
+            var selectedCertificate = (X509Certificate2)cmbSignCertificate.SelectedItem;
+            var selectedFormat = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem;
+            var inputPath = txtFileToSign.Text;
+            XmlDsig.Sign(inputPath).Using(selectedCertificate).UsingFormat(selectedFormat).IncludingCertificateInSignature().SaveTo(outputPath);
+            XmlDsig.Validate(outputPath).Perform();
             MessageBox.Show(@"Signature created and validated successfully :)");
         }
 

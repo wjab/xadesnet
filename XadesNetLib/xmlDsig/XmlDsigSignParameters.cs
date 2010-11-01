@@ -9,5 +9,6 @@ namespace XadesNetLib.xmlDsig
         public string OutputPath { get; set; }
         public X509Certificate2 SignatureCertificate { get; set; }
         public XmlDsigSignatureFormat SignatureFormat { get; set; }
+        public string OutputSignaturePath { get; set; }
     }
 }

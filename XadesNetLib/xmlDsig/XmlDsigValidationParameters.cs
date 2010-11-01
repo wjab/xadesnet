@@ -7,5 +7,6 @@ namespace XadesNetLib.xmlDsig
         public string InputPath { get; set; }
         public X509Certificate2 ValidationCertificate { get; set; }
         public bool ValidateCertificate { get; set; }
+        public string PathToDocument { get; set; }
     }
 }

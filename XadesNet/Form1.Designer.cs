@@ -162,6 +162,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSign);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Firma XMLDSig";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
