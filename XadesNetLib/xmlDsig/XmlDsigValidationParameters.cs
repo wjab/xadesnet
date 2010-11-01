@@ -4,8 +4,8 @@ namespace XadesNetLib.xmlDsig
 {
     public class XmlDsigValidationParameters
     {
-        public string PathDocumento { get; set; }
-        public X509Certificate2 CertificadoValidacion { get; set; }
-        public bool ValidarTambienElCertificado { get; set; }
+        public string InputPath { get; set; }
+        public X509Certificate2 ValidationCertificate { get; set; }
+        public bool ValidateCertificate { get; set; }
     }
 }

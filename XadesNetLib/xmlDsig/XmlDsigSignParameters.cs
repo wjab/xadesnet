@@ -1,14 +1,13 @@
-﻿using System.Xml;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Security.Cryptography.X509Certificates;
 
 namespace XadesNetLib.xmlDsig
 {
     public class XmlDsigSignParameters
     {
-        public bool IncluirCertificadoEnFirma { get; set; }
-        public XmlDocument XmlDeEntrada { get; set; }
-        public string PathSalida { get; set; }
-        public X509Certificate2 CertificadoDeFirma { get; set; }
-        public XmlDsigSignatureFormat FormatoDeFirma { get; set; }
+        public bool IncludeCertificateInSignature { get; set; }
+        public string InputPath { get; set; }
+        public string OutputPath { get; set; }
+        public X509Certificate2 SignatureCertificate { get; set; }
+        public XmlDsigSignatureFormat SignatureFormat { get; set; }
     }
 }

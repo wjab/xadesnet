@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Xml;
 using System.Security.Cryptography.X509Certificates;
 using XadesNetLib.xmlDsig;
 using XadesNetLib.certificates;
@@ -17,23 +16,19 @@ namespace XadesNet
 
         private void btnFirmar_Click(object sender, EventArgs e)
         {
-
-            var documentoXml = new XmlDocument { PreserveWhitespace = false };
-            var inputPath = txtFileToSign.Text;
-            documentoXml.Load(inputPath);
             var outputPath = txtOutputFile.Text;
             XmlDsig.SignDocument(new XmlDsigSignParameters
                                      {
-                                         CertificadoDeFirma = (X509Certificate2)cmbSignCertificate.SelectedItem,
-                                         FormatoDeFirma = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem,
-                                         IncluirCertificadoEnFirma = true,
-                                         PathSalida = outputPath,
-                                         XmlDeEntrada = documentoXml
+                                         SignatureCertificate = (X509Certificate2)cmbSignCertificate.SelectedItem,
+                                         SignatureFormat = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem,
+                                         IncludeCertificateInSignature = true,
+                                         OutputPath = outputPath,
+                                         InputPath = txtFileToSign.Text
                                      });
             XmlDsig.ValidateDocument(new XmlDsigValidationParameters
                                          {
-                                             PathDocumento = outputPath,
-                                             ValidarTambienElCertificado = true
+                                             InputPath = outputPath,
+                                             ValidateCertificate = true
                                          });
             MessageBox.Show(@"Signature created and validated successfully :)");
         }

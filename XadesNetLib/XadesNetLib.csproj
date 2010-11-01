@@ -50,6 +50,7 @@
     <Compile Include="certificates\Exceptions\CertificateStoreAccessDeniedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="xmlDsig\Exceptions\InvalidParameterException.cs" />
+    <Compile Include="xmlDsig\Exceptions\InvalidSignedDocumentException.cs" />
     <Compile Include="xmlDsig\InvalidDocumentException.cs" />
     <Compile Include="xmlDsig\XmlDsig.cs" />
     <Compile Include="xmlDsig\XmlDsigSignatureFormat.cs" />
