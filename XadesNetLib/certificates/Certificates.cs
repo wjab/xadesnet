@@ -18,7 +18,7 @@ namespace XadesNetLib.certificates
                 store.Open(OpenFlags.ReadOnly);
                 return store.Certificates;
             }
-            throw new Exception("Cannot access the certificate store " + certificateStoreType);
+            throw new CertificateStoreAccessDeniedException(String.Format("Cannot access the certificate store {0}", certificateStoreType));
         }
     }
 }

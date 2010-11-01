@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XadesNet", "XadesNet\XadesN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XadesNetLib", "XadesNetLib\XadesNetLib.csproj", "{041B6B99-B4AF-4A68-918F-03FCC9999FCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{A8CC9528-ACE0-47A1-82B8-C909597CE14A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{041B6B99-B4AF-4A68-918F-03FCC9999FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CC9528-ACE0-47A1-82B8-C909597CE14A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
