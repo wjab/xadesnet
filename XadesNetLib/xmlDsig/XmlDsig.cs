@@ -23,7 +23,8 @@ namespace XadesNetLib.xmlDsig
             }
             if (XmlDsigSignatureFormat.Enveloped.Equals(signParameters.FormatoDeFirma))
             {
-                signParameters.XmlDeEntrada.DocumentElement.AppendChild(signParameters.XmlDeEntrada.ImportNode(signatureXml, true));
+                if (signParameters.XmlDeEntrada.DocumentElement != null)
+                    signParameters.XmlDeEntrada.DocumentElement.AppendChild(signParameters.XmlDeEntrada.ImportNode(signatureXml, true));
                 signParameters.XmlDeEntrada.Save(signParameters.PathSalida);
             }
         }
@@ -41,7 +42,7 @@ namespace XadesNetLib.xmlDsig
             document.LoadXml(xml);
 
             var newsignedXml = new SignedXml(document);
-            if (document.DocumentElement == null) throw new Exception("Document has no root element");
+            if (document.DocumentElement == null) throw new InvalidDocumentException("Document has no root element");
             newsignedXml.LoadXml(document.DocumentElement);
 
             var validationCertificate = validationParameters.CertificadoValidacion;
@@ -71,16 +72,16 @@ namespace XadesNetLib.xmlDsig
 
         private static void Validate(XmlDsigSignParameters signParameters)
         {
-            if (signParameters == null) throw new Exception("Parameters to sign cannot be null");
-            if (signParameters.CertificadoDeFirma == null) throw new Exception("Signer Certificate cannot be null");
-            if (signParameters.XmlDeEntrada == null) throw new Exception("Document to sign cannot be null");
+            if (signParameters == null) throw new InvalidParameterException("Parameters to sign cannot be null");
+            if (signParameters.CertificadoDeFirma == null) throw new InvalidParameterException("Signer Certificate cannot be null");
+            if (signParameters.XmlDeEntrada == null) throw new InvalidParameterException("Document to sign cannot be null");
             if (signParameters.PathSalida == null) throw new Exception("Path of signed file cannot be null");
-            if (signParameters.XmlDeEntrada.DocumentElement == null) throw new Exception("Document to sign has no root element");
+            if (signParameters.XmlDeEntrada.DocumentElement == null) throw new InvalidDocumentException("Document to sign has no root element");
         }
 
         private static SignedXml GetSignature(XmlDocument document, X509Certificate2 certificate, XmlDsigSignatureFormat format)
         {
-            if (document.DocumentElement == null) throw new Exception("Document to sign has no root element");
+            if (document.DocumentElement == null) throw new InvalidDocumentException("Document to sign has no root element");
 
             var signedXml = new SignedXml(document);
             var dataObject = new DataObject("message", "", "", document.DocumentElement);
