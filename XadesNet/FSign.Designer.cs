@@ -1,6 +1,6 @@
 ﻿namespace XadesNet
 {
-    partial class Form1
+    partial class FSign
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -45,7 +45,8 @@
             // 
             // btnSign
             // 
-            this.btnSign.Location = new System.Drawing.Point(392, 245);
+            this.btnSign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSign.Location = new System.Drawing.Point(392, 223);
             this.btnSign.Name = "btnSign";
             this.btnSign.Size = new System.Drawing.Size(75, 23);
             this.btnSign.TabIndex = 2;
@@ -149,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 280);
+            this.ClientSize = new System.Drawing.Size(479, 258);
             this.Controls.Add(this.cmbSignatureFormat);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnBrowseOutputFile);

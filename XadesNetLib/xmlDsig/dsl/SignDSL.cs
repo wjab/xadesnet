@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using XadesNetLib.xmlDsig.signing;
 
 namespace XadesNetLib.xmlDsig.dsl
 {
@@ -28,12 +29,12 @@ namespace XadesNetLib.xmlDsig.dsl
             _parameters.SignatureFormat = XmlDsigSignatureFormat.Enveloping;
             return this;
         }
-        public SignDSL DetachedIn(string pathOfSignature)
+        public SignDSL Detached()
         {
             _parameters.SignatureFormat = XmlDsigSignatureFormat.Detached;
-            _parameters.OutputSignaturePath = pathOfSignature;
             return this;
         }
+
         public SignDSL UsingFormat(XmlDsigSignatureFormat xmlDsigSignatureFormat)
         {
             _parameters.SignatureFormat = xmlDsigSignatureFormat;
@@ -54,7 +55,7 @@ namespace XadesNetLib.xmlDsig.dsl
         public void SaveTo(string outputPath)
         {
             _parameters.OutputPath = outputPath;
-            XmlDsig.SignDocument(_parameters);
+            Signer.From(_parameters).Sign(_parameters);
         }
     }
 }

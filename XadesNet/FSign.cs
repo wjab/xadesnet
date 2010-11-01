@@ -7,9 +7,9 @@ using XadesNetLib.certificates;
 
 namespace XadesNet
 {
-    public partial class Form1 : Form
+    public partial class FSign : Form
     {
-        public Form1()
+        public FSign()
         {
             InitializeComponent();
         }
@@ -20,6 +20,7 @@ namespace XadesNet
             var selectedCertificate = (X509Certificate2)cmbSignCertificate.SelectedItem;
             var selectedFormat = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem;
             var inputPath = txtFileToSign.Text;
+
             XmlDsig.Sign(inputPath).Using(selectedCertificate).UsingFormat(selectedFormat).IncludingCertificateInSignature().SaveTo(outputPath);
             XmlDsig.Validate(outputPath).Perform();
             MessageBox.Show(@"Signature created and validated successfully :)");

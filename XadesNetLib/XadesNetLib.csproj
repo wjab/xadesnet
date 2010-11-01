@@ -54,6 +54,11 @@
     <Compile Include="xmlDsig\Exceptions\InvalidParameterException.cs" />
     <Compile Include="xmlDsig\Exceptions\InvalidSignedDocumentException.cs" />
     <Compile Include="xmlDsig\InvalidDocumentException.cs" />
+    <Compile Include="xmlDsig\signing\DetachedSigner.cs" />
+    <Compile Include="xmlDsig\signing\EnvelopedSigner.cs" />
+    <Compile Include="xmlDsig\signing\EnvelopingSigner.cs" />
+    <Compile Include="xmlDsig\signing\Signer.cs" />
+    <Compile Include="xmlDsig\signing\Validator.cs" />
     <Compile Include="xmlDsig\XmlDsig.cs" />
     <Compile Include="xmlDsig\XmlDsigSignatureFormat.cs" />
     <Compile Include="xmlDsig\XmlDsigSignParameters.cs" />

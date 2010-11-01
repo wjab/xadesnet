@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using XadesNetLib.xmlDsig.signing;
 
 namespace XadesNetLib.xmlDsig.dsl
 {
@@ -37,7 +38,7 @@ namespace XadesNetLib.xmlDsig.dsl
 
         public void Perform()
         {
-            XmlDsig.ValidateDocument(_parameters);
+            Validator.Validate(_parameters);
         }
     }
 }
