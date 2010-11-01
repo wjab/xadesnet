@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="certificates\Certificates.cs" />
-    <Compile Include="certificates\CertificateStoreAccessDeniedException.cs" />
+    <Compile Include="certificates\Exceptions\CertificateStoreAccessDeniedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="xmlDsig\Exceptions\InvalidParameterException.cs" />
+    <Compile Include="xmlDsig\InvalidDocumentException.cs" />
     <Compile Include="xmlDsig\XmlDsig.cs" />
     <Compile Include="xmlDsig\XmlDsigSignatureFormat.cs" />
     <Compile Include="xmlDsig\XmlDsigSignParameters.cs" />
