@@ -3,11 +3,11 @@ using System;
 namespace XadesNetLib.xmlDsig
 {
     [Serializable]
-    class InvalidParameterException: Exception
+    public class InvalidParameterException : Exception
     {
-          public InvalidParameterException()
+        public InvalidParameterException()
         {
-        }      
+        }
 
         public InvalidParameterException(string message)
             : base(message)

@@ -10,6 +10,7 @@ namespace XadesNetLib.xmlDsig.signing
     {
         public static bool Validate(XmlDsigValidationParameters parameters)
         {
+            if (parameters == null) throw  new InvalidParameterException("Parameters can not be null");
             var xmlDocument = new XmlDocument { PreserveWhitespace = false };
             xmlDocument.LoadXml(File.ReadAllText(parameters.InputPath));
             var xml = xmlDocument.OuterXml;
@@ -42,7 +43,7 @@ namespace XadesNetLib.xmlDsig.signing
                     }
                 }
             }
-            if (validationCertificate == null) throw new Exception("Signer public key could not be found");
+            if (validationCertificate == null) throw new InvalidParameterException("Signer public key could not be found");
             if (!newsignedXml.CheckSignature(validationCertificate, !validationParameters.ValidateCertificate))
             {
                 throw new InvalidOperationException("Signature is invalid.");

@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="certificates\Certificates.cs" />
+    <Compile Include="certificates\CertificateUtils.cs" />
     <Compile Include="certificates\Exceptions\CertificateStoreAccessDeniedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="xmlDsig\dsl\SignDSL.cs" />

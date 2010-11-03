@@ -3,3 +3,9 @@ glob:XadesNet.suo
 glob:*/obj/*
 glob:*/bin/*
 glob:*.ReSharper.*
+glob:*\examples\*
+glob:*\LoDellos\*
+glob:LoDellos/*
+glob:recursos\*
+glob:TestResult.xml
+glob:XadesNetTest.VisualState.xml

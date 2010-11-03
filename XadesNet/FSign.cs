@@ -21,14 +21,14 @@ namespace XadesNet
             var selectedFormat = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem;
             var inputPath = txtFileToSign.Text;
 
-            XmlDsig.Sign(inputPath).Using(selectedCertificate).UsingFormat(selectedFormat).IncludingCertificateInSignature().SaveTo(outputPath);
+            XmlDsig.Sign(inputPath).Using(selectedCertificate).Enveloping().UsingFormat(selectedFormat).IncludingCertificateInSignature().SaveTo(outputPath);
             XmlDsig.Validate(outputPath).Perform();
             MessageBox.Show(@"Signature created and validated successfully :)");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var certificados = Certificates.GetCertificatesFrom(CertificateStore.My);
+            var certificados = CertificateUtils.GetCertificatesFrom(CertificateStore.My);
             cmbSignCertificate.DisplayMember = "Subject";
             cmbSignCertificate.DataSource = certificados;
             var formats = new List<XmlDsigSignatureFormat>
