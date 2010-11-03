@@ -1,36 +1,30 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-using XadesNetLib.xmlDsig.signing;
+using XadesNetLib.XmlDsig.Signing;
 
-namespace XadesNetLib.xmlDsig.dsl
+namespace XadesNetLib.XmlDsig.Dsl
 {
-    public class ValidationDSL
+    public class VerificationDSL
     {
         private readonly XmlDsigValidationParameters _parameters = new XmlDsigValidationParameters();
 
-        public ValidationDSL SignaturePath(string signaturePath)
+        public VerificationDSL SignaturePath(string signaturePath)
         {
             _parameters.InputPath = signaturePath;
             return this;
         }
 
-        public ValidationDSL Using(X509Certificate2 validationCertificate)
+        public VerificationDSL Using(X509Certificate2 validationCertificate)
         {
             _parameters.ValidationCertificate = validationCertificate;
             return this;
         }
 
-        public ValidationDSL DetachedDocumentIn(string pathToDocument)
-        {
-            _parameters.PathToDocument = pathToDocument;
-            return this;
-        }
-
-        public ValidationDSL AlsoValidateCertificate()
+        public VerificationDSL AlsoVerifyCertificate()
         {
             _parameters.ValidateCertificate = true;
             return this;
         }
-        public ValidationDSL DoNotValidateCertificate()
+        public VerificationDSL DoNotVerifyCertificate()
         {
             _parameters.ValidateCertificate = false;
             return this;
@@ -38,7 +32,7 @@ namespace XadesNetLib.xmlDsig.dsl
 
         public void Perform()
         {
-            Validator.Validate(_parameters);
+            Verifier.Verify(_parameters);
         }
     }
 }

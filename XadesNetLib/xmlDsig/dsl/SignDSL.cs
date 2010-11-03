@@ -1,7 +1,8 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-using XadesNetLib.xmlDsig.signing;
+using System.Xml;
+using XadesNetLib.XmlDsig.Signing;
 
-namespace XadesNetLib.xmlDsig.dsl
+namespace XadesNetLib.XmlDsig.Dsl
 {
     public class SignDSL
     {
@@ -10,6 +11,11 @@ namespace XadesNetLib.xmlDsig.dsl
         public SignDSL InputPath(string inputPath)
         {
             _parameters.InputPath = inputPath;
+            return this;
+        }
+        public SignDSL InputXml(XmlDocument xmlDocument)
+        {
+            _parameters.InputXml = xmlDocument;
             return this;
         }
 
@@ -52,10 +58,14 @@ namespace XadesNetLib.xmlDsig.dsl
             return this;
         }
 
-        public void SaveTo(string outputPath)
+        public void SignToFile(string outputPath)
         {
             _parameters.OutputPath = outputPath;
             Signer.From(_parameters).Sign(_parameters);
+        }
+        public void SignAndGetXml()
+        {
+            Signer.From(_parameters).SignAndGetXml(_parameters);
         }
     }
 }

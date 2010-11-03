@@ -1,12 +1,26 @@
 ﻿using System.Security.Cryptography.Xml;
 using System.Xml;
+using XadesNetLib.XmlDsig.Exceptions;
 
-namespace XadesNetLib.xmlDsig.signing
+namespace XadesNetLib.XmlDsig.Signing.Signers
 {
     public class EnvelopingSigner : Signer
     {
         protected override void CreateAndAddReferenceTo(SignedXml signedXml, XmlDocument document, string inputPath)
         {
+            if (signedXml == null)
+            {
+                throw new InvalidParameterException("Signed Xml cannot be null");
+            }
+            if (document == null)
+            {
+                throw new InvalidParameterException("Xml document cannot be null");
+            }
+            if (document.DocumentElement == null)
+            {
+                throw new InvalidParameterException("Xml document must have root element");
+            }
+
             var signatureReference = new Reference("#documentdata");
             signatureReference.AddTransform(new XmlDsigExcC14NTransform());
             signedXml.AddReference(signatureReference);

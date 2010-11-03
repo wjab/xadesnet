@@ -1,10 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
+using XadesNetLib.XmlDsig.Exceptions;
+using XadesNetLib.XmlDsig.Signing.Signers;
 
-namespace XadesNetLib.xmlDsig.signing
+namespace XadesNetLib.XmlDsig.Signing
 {
     public abstract class Signer
     {
@@ -24,14 +25,30 @@ namespace XadesNetLib.xmlDsig.signing
 
         public void Sign(XmlDsigSignParameters signParameters)
         {
+            var signedDocument = SignAndGetXml(signParameters);
+            SaveSignatureToFile(signedDocument, signParameters);
+        }
+        public XmlDocument SignAndGetXml(XmlDsigSignParameters signParameters)
+        {
             ValidateParameters(signParameters);
 
-            var xmlAFirmar = new XmlDocument();
-            xmlAFirmar.Load(signParameters.InputPath);
+            var inputXml = signParameters.InputXml;
+            if (inputXml == null)
+            {
+                inputXml = new XmlDocument();
+                inputXml.Load(signParameters.InputPath);
+            }
 
-            var signature = GetSignature(xmlAFirmar, signParameters.SignatureCertificate, signParameters.InputPath);
-            SaveSignatureToFile(xmlAFirmar, signature.GetXml(), signParameters);
+            var signature = GetSignature(inputXml, signParameters.SignatureCertificate, signParameters.InputPath);
+            var xmlDocument = BuildFinalSignedXmlDocument(inputXml, signature.GetXml());
+            return xmlDocument;
         }
+
+        protected void SaveSignatureToFile(XmlDocument xml, XmlDsigSignParameters signParameters)
+        {
+            xml.Save(signParameters.OutputPath);
+        }
+
         #region Métodos de implementación de los pasos de firma
 
         private static void ValidateParameters(XmlDsigSignParameters signParameters)
@@ -64,16 +81,15 @@ namespace XadesNetLib.xmlDsig.signing
             certificateKeyInfo.AddClause(new KeyInfoX509Data(certificate));
             signedXml.KeyInfo = certificateKeyInfo;
         }
-        protected virtual void SaveSignatureToFile(XmlDocument xmlAFirmar, XmlElement signatureXml, XmlDsigSignParameters signParameters)
+
+        protected virtual XmlDocument BuildFinalSignedXmlDocument(XmlDocument inputXml, XmlElement signatureXml)
         {
             var xmlDocument = new XmlDocument();
             xmlDocument.LoadXml(signatureXml.OuterXml);
-            xmlDocument.Save(signParameters.OutputPath);
+            return xmlDocument;
         }
 
         #endregion
-
-
 
         #region Métodos a sobreescribir
 

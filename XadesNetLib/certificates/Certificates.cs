@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 
-namespace XadesNetLib.Certificates
+namespace XadesNetLib.certificates
 {
     public enum CertificateStore
     {
         My
     }
 
-    public abstract class CertificateUtils
+    public abstract class Certificates
     {
         public static X509Certificate2Collection GetCertificatesFrom(CertificateStore certificateStoreType)
         {

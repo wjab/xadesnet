@@ -3,14 +3,14 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
+using XadesNetLib.XmlDsig.Exceptions;
 
-namespace XadesNetLib.xmlDsig.signing
+namespace XadesNetLib.XmlDsig.Signing
 {
-    public abstract class Validator
+    public abstract class Verifier
     {
-        public static bool Validate(XmlDsigValidationParameters parameters)
+        public static bool Verify(XmlDsigValidationParameters parameters)
         {
-            if (parameters == null) throw  new InvalidParameterException("Parameters can not be null");
             var xmlDocument = new XmlDocument { PreserveWhitespace = false };
             xmlDocument.LoadXml(File.ReadAllText(parameters.InputPath));
             var xml = xmlDocument.OuterXml;
@@ -43,7 +43,7 @@ namespace XadesNetLib.xmlDsig.signing
                     }
                 }
             }
-            if (validationCertificate == null) throw new InvalidParameterException("Signer public key could not be found");
+            if (validationCertificate == null) throw new Exception("Signer public key could not be found");
             if (!newsignedXml.CheckSignature(validationCertificate, !validationParameters.ValidateCertificate))
             {
                 throw new InvalidOperationException("Signature is invalid.");
@@ -53,6 +53,15 @@ namespace XadesNetLib.xmlDsig.signing
 
         protected static XmlElement GetSignatureNode(XmlDocument document)
         {
+            if (document == null)
+            {
+                throw new InvalidParameterException("Xml document cannot be null");
+            }
+            if (document.DocumentElement == null)
+            {
+                throw new InvalidParameterException("Xml document must have root element");
+            }
+
             if (document.DocumentElement.Name.Equals("Signature"))
             {
                 return document.DocumentElement;

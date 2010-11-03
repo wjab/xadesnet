@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace XadesNetLib.Certificates
+namespace XadesNetLib.certificates
 {
     [Serializable]
     public class CertificateStoreAccessDeniedException : Exception

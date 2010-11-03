@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
-using XadesNetLib.xmlDsig;
+using XadesNetLib.XmlDsig;
 using XadesNetLib.certificates;
 
 namespace XadesNet
@@ -21,16 +21,17 @@ namespace XadesNet
             var selectedFormat = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem;
             var inputPath = txtFileToSign.Text;
 
-            XmlDsig.Sign(inputPath).Using(selectedCertificate).Enveloping().UsingFormat(selectedFormat).IncludingCertificateInSignature().SaveTo(outputPath);
-            XmlDsig.Validate(outputPath).Perform();
-            MessageBox.Show(@"Signature created and validated successfully :)");
+            XmlDsigHelper.Sign(inputPath).Using(selectedCertificate).UsingFormat(selectedFormat).
+                IncludingCertificateInSignature().SignToFile(outputPath);
+            XmlDsigHelper.Verify(outputPath).Perform();
+            MessageBox.Show(@"Signature created and verified successfully :)");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var certificados = CertificateUtils.GetCertificatesFrom(CertificateStore.My);
+            var certificates = Certificates.GetCertificatesFrom(CertificateStore.My);
             cmbSignCertificate.DisplayMember = "Subject";
-            cmbSignCertificate.DataSource = certificados;
+            cmbSignCertificate.DataSource = certificates;
             var formats = new List<XmlDsigSignatureFormat>
                               {
                                   XmlDsigSignatureFormat.Detached,

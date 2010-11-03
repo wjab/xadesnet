@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using XadesNetLib.xmlDsig;
+using XadesNetLib.XmlDsig;
 
 namespace XadesNet
 {
-    public partial class FValidate : Form
+    public partial class FVerify : Form
     {
-        public FValidate()
+        public FVerify()
         {
             InitializeComponent();
         }
@@ -19,8 +19,8 @@ namespace XadesNet
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
-            XmlDsig.Validate(txtFileToValidate.Text).Perform();
-            MessageBox.Show("Signature is valid!");
+            XmlDsigHelper.Verify(txtFileToValidate.Text).Perform();
+            MessageBox.Show(@"Signature verified!");
         }
     }
 }

@@ -48,7 +48,7 @@
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(152, 40);
             this.btnValidate.TabIndex = 1;
-            this.btnValidate.Text = "Validate";
+            this.btnValidate.Text = "Verify";
             this.btnValidate.UseVisualStyleBackColor = true;
             this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 

@@ -1,6 +1,6 @@
 ﻿namespace XadesNet
 {
-    partial class FValidate
+    partial class FVerify
     {
         /// <summary>
         /// Required designer variable.
@@ -59,7 +59,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Signature to Validate:";
+            this.label2.Text = "Signature to Verify:";
             // 
             // btnValidate
             // 
@@ -68,7 +68,7 @@
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(75, 23);
             this.btnValidate.TabIndex = 11;
-            this.btnValidate.Text = "Validate";
+            this.btnValidate.Text = "Verify";
             this.btnValidate.UseVisualStyleBackColor = true;
             this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 

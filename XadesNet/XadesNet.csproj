@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F6A36E58-AD7F-40EC-A8FD-7E62075451F1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -62,11 +62,11 @@
     <Compile Include="FStart.Designer.cs">
       <DependentUpon>FStart.cs</DependentUpon>
     </Compile>
-    <Compile Include="FValidate.cs">
+    <Compile Include="FVerify.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FValidate.Designer.cs">
-      <DependentUpon>FValidate.cs</DependentUpon>
+    <Compile Include="FVerify.Designer.cs">
+      <DependentUpon>FVerify.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,8 +77,8 @@
       <DependentUpon>FStart.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FValidate.resx">
-      <DependentUpon>FValidate.cs</DependentUpon>
+    <EmbeddedResource Include="FVerify.resx">
+      <DependentUpon>FVerify.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
