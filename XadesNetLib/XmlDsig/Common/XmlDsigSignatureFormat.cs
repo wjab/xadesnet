@@ -1,4 +1,4 @@
-﻿namespace XadesNetLib.XmlDsig
+﻿namespace XadesNetLib.XmlDsig.Common
 {
     public enum XmlDsigSignatureFormat
     {

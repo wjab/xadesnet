@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace XadesNetLib.XmlDsig
+namespace XadesNetLib.XmlDsig.Common
 {
     public class XmlDsigValidationParameters
     {

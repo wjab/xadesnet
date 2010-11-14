@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
-using XadesNetLib.certificates;
+using XadesNetLib.Certificates;
+using XadesNetLib.Certificates.Exceptions;
 
 namespace Testing
 {
@@ -13,7 +14,7 @@ namespace Testing
         {
             // I know, this is kind of twisted, but there's really bad people
             // out there.
-            Certificates.GetCertificatesFrom((CertificateStore) 2);
+            CertificatesHelper.GetCertificatesFrom((CertificateStore) 2);
         }
     }
 }

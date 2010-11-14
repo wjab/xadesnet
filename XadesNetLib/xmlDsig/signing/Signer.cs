@@ -2,13 +2,17 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
-using XadesNetLib.XmlDsig.Exceptions;
+using XadesNetLib.Common;
+using XadesNetLib.Exceptions;
+using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Signing.Signers;
 
 namespace XadesNetLib.XmlDsig.Signing
 {
     public abstract class Signer
     {
+        public const string PropertiesId = "signatureProperties";
+
         public static Signer From(XmlDsigSignParameters parameters)
         {
             switch (parameters.SignatureFormat)
@@ -25,10 +29,18 @@ namespace XadesNetLib.XmlDsig.Signing
 
         public void Sign(XmlDsigSignParameters signParameters)
         {
-            var signedDocument = SignAndGetXml(signParameters);
+            Sign(signParameters, null);
+        }
+        public void Sign(XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
+        {
+            var signedDocument = SignAndGetXml(signParameters, signedXmlPostProcessing);
             SaveSignatureToFile(signedDocument, signParameters);
         }
         public XmlDocument SignAndGetXml(XmlDsigSignParameters signParameters)
+        {
+            return SignAndGetXml(signParameters, null);
+        }
+        public XmlDocument SignAndGetXml(XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
         {
             ValidateParameters(signParameters);
 
@@ -37,9 +49,10 @@ namespace XadesNetLib.XmlDsig.Signing
             {
                 inputXml = new XmlDocument();
                 inputXml.Load(signParameters.InputPath);
+                signParameters.InputXml = inputXml;
             }
 
-            var signature = GetSignature(inputXml, signParameters.SignatureCertificate, signParameters.InputPath);
+            var signature = GetSignature(inputXml, signParameters, signedXmlPostProcessing);
             var xmlDocument = BuildFinalSignedXmlDocument(inputXml, signature.GetXml());
             return xmlDocument;
         }
@@ -58,25 +71,108 @@ namespace XadesNetLib.XmlDsig.Signing
             if (signParameters.InputPath == null) throw new InvalidParameterException("Document to sign cannot be null");
             if (signParameters.OutputPath == null) throw new InvalidParameterException("Path of signed file cannot be null");
         }
-        private SignedXml GetSignature(XmlDocument document, X509Certificate2 certificate, string inputPath)
+        private ExtendedSignedXml GetSignature(XmlDocument inputXml, XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
         {
-            if (document.DocumentElement == null) throw new InvalidDocumentException("Document to sign has no root element");
+            if (inputXml.DocumentElement == null) throw new InvalidDocumentException("Document to sign has no root element");
+            var certificate = signParameters.SignatureCertificate;
+            var inputPath = signParameters.InputPath;
 
-            var signedXml = new SignedXml(document);
-            CreateAndAddReferenceTo(signedXml, document, inputPath);
-            IncludeSignatureCertificate(signedXml, certificate);
+            var signedXml = new ExtendedSignedXml(inputXml);
+            signedXml.Signature.Id = "signature";
+
+            CreateAndAddReferenceTo(signedXml, inputXml, inputPath, signParameters.XPathNodeToSign);
+            CreateTimestampNodeIfNeeded(signedXml, signParameters);
+            CreateNodesForProperties(signedXml, signParameters);
+            IncludeSignatureCertificateIfNeeded(signedXml, certificate, signParameters);
             AddCanonicalizationMethodTo(signedXml);
+            if (signedXmlPostProcessing != null) signedXmlPostProcessing(signedXml);
             signedXml.ComputeSignature();
 
             return signedXml;
         }
+
+        private static void CreateNodesForProperties(ExtendedSignedXml signedXml, XmlDsigSignParameters signParameters)
+        {
+            if (signParameters.Properties != null && signParameters.Properties.Count > 0)
+            {
+                foreach (var xmlPropertyDescriptor in signParameters.Properties)
+                {
+                    AddPropertyFromNameAndValue(xmlPropertyDescriptor.Name, xmlPropertyDescriptor.Value,
+                                                xmlPropertyDescriptor.NameSpace,
+                                                signedXml, signParameters);
+                }
+            }
+            if (signParameters.PropertyBuilders != null && signParameters.PropertyBuilders.Count > 0)
+            {
+                foreach (var propertyBuilder in signParameters.PropertyBuilders)
+                {
+                    AddProperty(signParameters.InputXml, signedXml, propertyBuilder(signParameters.InputXml));
+                }
+            }
+        }
+
+        private static void CreateTimestampNodeIfNeeded(ExtendedSignedXml signedXml, XmlDsigSignParameters signParameters)
+        {
+            if (!signParameters.IncludeTimestamp) return;
+
+            const string propertyName = "Timestamp";
+            const string propertyNameSpace = "http://www.example.org/#signatureProperties";
+            var propertyValue = DateTime.Now.ToLongTimeString();
+
+            AddPropertyFromNameAndValue(propertyName, propertyValue, propertyNameSpace, signedXml, signParameters);
+        }
+
+        private static void AddPropertyFromNameAndValue(string propertyName, string propertyValue, string propertyNameSpace, 
+            ExtendedSignedXml signedXml, XmlDsigSignParameters signParameters)
+        {
+            var document = signParameters.InputXml;
+            if (document == null) throw new InvalidParameterException("Document cannot be null");
+
+            var propertyNode = string.IsNullOrEmpty(propertyNameSpace) ? 
+                document.CreateElement(propertyName) : document.CreateElement(propertyName, propertyNameSpace);
+            propertyNode.InnerText = propertyValue;
+            AddProperty(document, signedXml, propertyNode);
+        }
+
+        private static void AddProperty(XmlDocument document, ExtendedSignedXml signedXml, XmlElement propertyNode)
+        {
+            if (signedXml.PropertiesNode == null)
+            {
+                signedXml.PropertiesNode = CreatePropertiesNode(document, signedXml);
+            }
+
+            var nodeSignatureProperty = document.CreateElement("SignatureProperty", SignedXml.XmlDsigNamespaceUrl);
+            nodeSignatureProperty.SetAttribute("Target", "#" + signedXml.Signature.Id);
+            nodeSignatureProperty.AppendChild(propertyNode);
+
+            signedXml.PropertiesNode.AppendChild(nodeSignatureProperty);
+        }
+
+        private static XmlElement CreatePropertiesNode(XmlDocument document, ExtendedSignedXml signedXml)
+        {
+            var dataObject = new DataObject();
+            var nodeSignatureProperties = document.CreateElement("SignatureProperties", SignedXml.XmlDsigNamespaceUrl);
+            nodeSignatureProperties.SetAttribute("Id", PropertiesId);
+            dataObject.Data = nodeSignatureProperties.SelectNodes(".");
+            signedXml.AddObject(dataObject);
+
+            var referenceToProperties = new Reference
+            {
+                Uri = "#" + PropertiesId,
+                Type = ExtendedSignedXml.XmlDsigSignatureProperties
+            };
+            signedXml.AddReference(referenceToProperties);
+            return nodeSignatureProperties;
+        }
+
         protected virtual void AddCanonicalizationMethodTo(SignedXml signedXml)
         {
         }
-        protected void IncludeSignatureCertificate(SignedXml signedXml, X509Certificate2 certificate)
+        protected void IncludeSignatureCertificateIfNeeded(SignedXml signedXml, X509Certificate2 certificate, XmlDsigSignParameters signParameters)
         {
             signedXml.SigningKey = certificate.PrivateKey;
 
+            if (!signParameters.IncludeCertificateInSignature) return;
             var certificateKeyInfo = new KeyInfo();
             certificateKeyInfo.AddClause(new KeyInfoX509Data(certificate));
             signedXml.KeyInfo = certificateKeyInfo;
@@ -93,7 +189,7 @@ namespace XadesNetLib.XmlDsig.Signing
 
         #region Métodos a sobreescribir
 
-        protected abstract void CreateAndAddReferenceTo(SignedXml signedXml, XmlDocument document, string inputPath);
+        protected abstract void CreateAndAddReferenceTo(SignedXml signedXml, XmlDocument document, string inputPath, string xpathToNodeToSign);
 
         #endregion
     }

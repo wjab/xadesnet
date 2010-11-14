@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System;
 
-namespace XadesNetLib.XmlDsig.Exceptions
+namespace XadesNetLib.Exceptions
 {
     [Serializable]
     class InvalidParameterException : Exception

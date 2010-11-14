@@ -1,5 +1,8 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml;
+using XadesNetLib.Common;
+using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Signing;
 
 namespace XadesNetLib.XmlDsig.Dsl
@@ -55,6 +58,40 @@ namespace XadesNetLib.XmlDsig.Dsl
         public SignDSL DoNotIncludeCertificateInSignature()
         {
             _parameters.IncludeCertificateInSignature = false;
+            return this;
+        }
+        public SignDSL IncludeTimestamp(bool includeTimestamp)
+        {
+            _parameters.IncludeTimestamp = includeTimestamp;
+            return this;
+        }
+        public SignDSL WithProperty(string propertyName, string propertyValue)
+        {
+            _parameters.Properties.Add(new XmlPropertyDescriptor
+            {
+                Name = propertyName,
+                Value = propertyValue
+            });
+            return this;
+        }
+        public SignDSL WithProperty(string propertyName, string propertyValue, string propertyNameSpace)
+        {
+            _parameters.Properties.Add(new XmlPropertyDescriptor
+                                           {
+                                               Name = propertyName,
+                                               Value = propertyValue,
+                                               NameSpace = propertyNameSpace
+                                           });
+            return this;
+        }
+        public SignDSL WithPropertyBuiltFromDoc(Converter<XmlDocument, XmlElement> howToCreatePropertyNodeFromDoc)
+        {
+            _parameters.PropertyBuilders.Add(howToCreatePropertyNodeFromDoc);
+            return this;
+        }
+        public SignDSL NodeToSign(string xpathToNode)
+        {
+            _parameters.XPathNodeToSign = xpathToNode;
             return this;
         }
 

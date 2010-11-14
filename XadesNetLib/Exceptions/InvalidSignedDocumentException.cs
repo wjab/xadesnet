@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XadesNetLib.XmlDsig.Exceptions
+namespace XadesNetLib.Exceptions
 {
     public class InvalidSignedDocumentException: Exception
     {

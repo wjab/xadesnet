@@ -19,7 +19,10 @@ namespace XadesNet
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
-            XmlDsigHelper.Verify(txtFileToValidate.Text).Perform();
+            var results = XmlDsigHelper.Verify(txtFileToValidate.Text).PerformAndGetResults();
+            txtOriginalXml.Text = results.OriginalDocument.OuterXml;
+            txtTimestamp.Text = results.Timestamp;
+            txtCertificate.Text = results.SigningCertificate.Subject;
             MessageBox.Show(@"Signature verified!");
         }
     }

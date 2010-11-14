@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
+using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Signing;
 
 namespace XadesNetLib.XmlDsig.Dsl
@@ -33,6 +35,11 @@ namespace XadesNetLib.XmlDsig.Dsl
         public void Perform()
         {
             Verifier.Verify(_parameters);
+        }
+
+        public VerificationResults PerformAndGetResults()
+        {
+            return Verifier.VerifyAndGetResults(_parameters);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System;
 
-namespace XadesNetLib.XmlDsig
+namespace XadesNetLib.Exceptions
 {
     [Serializable]
     class InvalidDocumentException : Exception
