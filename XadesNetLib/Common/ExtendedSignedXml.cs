@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 using XadesNetLib.Xml;
@@ -15,7 +16,7 @@ namespace XadesNetLib.Common
 
         public override XmlElement GetIdElement(XmlDocument doc, string id)
         {
-            if (string.IsNullOrEmpty(id)) return null;
+            if (String.IsNullOrEmpty(id)) return null;
 
             var xmlElement = base.GetIdElement(doc, id);
             if (xmlElement != null) return xmlElement;
@@ -33,5 +34,7 @@ namespace XadesNetLib.Common
             base.AddObject(dataObject);
             _dataObjects.Add(dataObject);
         }
+
+        public const string XmlDSigTimestampNamespace = "http://xadesnet.codeplex.com/#timestamp";
     }
 }

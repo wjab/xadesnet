@@ -4,6 +4,7 @@ using System.Security.Cryptography.Xml;
 using System.Xml;
 using XadesNetLib.Common;
 using XadesNetLib.Exceptions;
+using XadesNetLib.Xml;
 using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Signing.Signers;
 
@@ -116,8 +117,8 @@ namespace XadesNetLib.XmlDsig.Signing
             if (!signParameters.IncludeTimestamp) return;
 
             const string propertyName = "Timestamp";
-            const string propertyNameSpace = "http://www.example.org/#signatureProperties";
-            var propertyValue = DateTime.Now.ToLongTimeString();
+            const string propertyNameSpace = ExtendedSignedXml.XmlDSigTimestampNamespace;
+            var propertyValue = XmlHelper.NowInCanonicalRepresentation();
 
             AddPropertyFromNameAndValue(propertyName, propertyValue, propertyNameSpace, signedXml, signParameters);
         }

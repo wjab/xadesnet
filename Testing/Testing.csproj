@@ -49,6 +49,7 @@
     <Compile Include="CertificatesTest.cs" />
     <Compile Include="TestingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlDSigSignTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\nunit.framework.dll" />

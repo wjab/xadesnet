@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+using System.IO;
 namespace Testing
 {
     public class TestingHelper
@@ -37,6 +38,15 @@ namespace Testing
         } 
 
         #endregion
+
+        public static  string GetFileContents(string  path)
+        {
+            if (File.Exists(path))
+            {
+                return File.ReadAllText(path);
+            }
+            throw new ArgumentException("File doesn't exists!");
+        }
 
     }
 }
