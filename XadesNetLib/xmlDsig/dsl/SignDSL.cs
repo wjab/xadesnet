@@ -14,11 +14,13 @@ namespace XadesNetLib.XmlDsig.Dsl
         public SignDSL InputPath(string inputPath)
         {
             _parameters.InputPath = inputPath;
+            _parameters.InputXml = null;
             return this;
         }
         public SignDSL InputXml(XmlDocument xmlDocument)
         {
             _parameters.InputXml = xmlDocument;
+            _parameters.InputPath = string.Empty;
             return this;
         }
 
@@ -100,9 +102,9 @@ namespace XadesNetLib.XmlDsig.Dsl
             _parameters.OutputPath = outputPath;
             Signer.From(_parameters).Sign(_parameters);
         }
-        public void SignAndGetXml()
+        public XmlDocument SignAndGetXml()
         {
-            Signer.From(_parameters).SignAndGetXml(_parameters);
+            return Signer.From(_parameters).SignAndGetXml(_parameters);
         }
     }
 }

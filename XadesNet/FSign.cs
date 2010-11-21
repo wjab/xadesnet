@@ -18,13 +18,13 @@ namespace XadesNet
         private void btnFirmar_Click(object sender, EventArgs e)
         {
             var outputPath = txtOutputFile.Text;
-            var selectedCertificate = (X509Certificate2)cmbSignCertificate.SelectedItem;
-            var selectedFormat = (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem;
+            var selectedCertificate = GetSelectedCertificate();
+            var selectedFormat = GetSelectedSignatureFormat();
             var inputPath = txtFileToSign.Text;
             var xpathToNodeToSign = txtNodeToSign.Text ?? "";
-            if (!"".Equals(xpathToNodeToSign)) 
+            if (!"".Equals(xpathToNodeToSign))
             {
-                if (!xpathToNodeToSign.StartsWith("#")) xpathToNodeToSign = "#" + xpathToNodeToSign; 
+                if (!xpathToNodeToSign.StartsWith("#")) xpathToNodeToSign = "#" + xpathToNodeToSign;
             }
 
             var howToSign =
@@ -39,6 +39,16 @@ namespace XadesNet
             XmlDsigHelper.Verify(outputPath).Perform();
 
             MessageBox.Show(@"Signature created and verified successfully :)");
+        }
+
+        private XmlDsigSignatureFormat GetSelectedSignatureFormat()
+        {
+            return (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem;
+        }
+
+        private X509Certificate2 GetSelectedCertificate()
+        {
+            return (X509Certificate2)cmbSignCertificate.SelectedItem;
         }
 
         private void Form1_Load(object sender, EventArgs e)

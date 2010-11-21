@@ -33,5 +33,18 @@ namespace XadesNetLib.XmlDsig.Common
             get { return _propertyBuilders; }
             set { _propertyBuilders = value; }
         }
+
+        public override string ToString()
+        {
+            return "Parameters: " + Environment.NewLine +
+                   "\t IncludeCertificateInSignature: " + IncludeCertificateInSignature + Environment.NewLine +
+                   "\t InputPath: " + InputPath + Environment.NewLine +
+                   "\t InputXml: " + InputXml.OuterXml + Environment.NewLine +
+                   "\t XPathNodeToSign: " + XPathNodeToSign + Environment.NewLine +
+                   "\t OutputPath: " + OutputPath + Environment.NewLine +
+                   "\t SignatureCertificate: " + SignatureCertificate + Environment.NewLine +
+                   "\t SignatureFormat: " + SignatureFormat + Environment.NewLine +
+                   "\t IncludeTimestamp: " + IncludeTimestamp + Environment.NewLine;
+        }
     }
 }

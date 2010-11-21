@@ -24,5 +24,12 @@ namespace XadesNetLib.XmlDsig
             validationDsl.SignaturePath(signaturePath);
             return validationDsl;
         }
+
+        public static BatchSignDSL BatchSign(params string[] inputPaths)
+        {
+            var batchSignDsl = new BatchSignDSL();
+            batchSignDsl.InputPaths(inputPaths);
+            return batchSignDsl;
+        }
     }
 }

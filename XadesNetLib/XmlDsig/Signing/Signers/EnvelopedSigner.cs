@@ -13,6 +13,7 @@ namespace XadesNetLib.XmlDsig.Signing.Signers
                 throw new InvalidParameterException("Signed Xml cannot be null");
             }
 
+            if (xpathToNodeToSign == null) xpathToNodeToSign = "";
             var signatureReference = new Reference { Uri = xpathToNodeToSign};
             signatureReference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
             signedXml.AddReference(signatureReference);

@@ -55,11 +55,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="XAdES\Dsl\XAdESSignDSL.cs" />
     <Compile Include="XAdES\Signing\XAdESSigner.cs" />
     <Compile Include="XAdES\XAdESHelper.cs" />
     <Compile Include="XAdES\Common\XAdESSignParameters.cs" />
     <Compile Include="XmlDsig\Common\VerificationResults.cs" />
+    <Compile Include="XmlDsig\Dsl\BatchSignDSL.cs" />
     <Compile Include="XmlDsig\Dsl\SignDSL.cs" />
     <Compile Include="XmlDsig\Dsl\VerificationDSL.cs" />
     <Compile Include="Exceptions\InvalidParameterException.cs" />
