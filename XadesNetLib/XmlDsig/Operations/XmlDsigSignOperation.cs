@@ -6,42 +6,42 @@ using XadesNetLib.Common;
 using XadesNetLib.Exceptions;
 using XadesNetLib.Xml;
 using XadesNetLib.XmlDsig.Common;
-using XadesNetLib.XmlDsig.Signing.Signers;
+using XadesNetLib.XmlDsig.Operations.Signers;
 
-namespace XadesNetLib.XmlDsig.Signing
+namespace XadesNetLib.XmlDsig.Operations
 {
-    public abstract class Signer
+    internal abstract class XmlDsigSignOperation
     {
-        public const string PropertiesId = "signatureProperties";
+        internal const string PropertiesId = "signatureProperties";
 
-        public static Signer From(XmlDsigSignParameters parameters)
+        internal static XmlDsigSignOperation From(XmlDsigSignParameters parameters)
         {
             switch (parameters.SignatureFormat)
             {
                 case XmlDsigSignatureFormat.Enveloping:
-                    return new EnvelopingSigner();
+                    return new XmlDsigEnvelopingSignOperation();
                 case XmlDsigSignatureFormat.Enveloped:
-                    return new EnvelopedSigner();
+                    return new XmlDsigEnvelopedSignOperation();
                 case XmlDsigSignatureFormat.Detached:
-                    return new DetachedSigner();
+                    return new XmlDsigDetachedSignOperation();
             }
             throw new Exception("There isn't a '" + parameters.SignatureFormat + "' signer implemented");
         }
 
-        public void Sign(XmlDsigSignParameters signParameters)
+        internal void Sign(XmlDsigSignParameters signParameters)
         {
             Sign(signParameters, null);
         }
-        public void Sign(XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
+        internal void Sign(XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
         {
             var signedDocument = SignAndGetXml(signParameters, signedXmlPostProcessing);
             SaveSignatureToFile(signedDocument, signParameters);
         }
-        public XmlDocument SignAndGetXml(XmlDsigSignParameters signParameters)
+        internal XmlDocument SignAndGetXml(XmlDsigSignParameters signParameters)
         {
             return SignAndGetXml(signParameters, null);
         }
-        public XmlDocument SignAndGetXml(XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
+        internal XmlDocument SignAndGetXml(XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
         {
             ValidateParameters(signParameters);
 
@@ -91,7 +91,6 @@ namespace XadesNetLib.XmlDsig.Signing
 
             return signedXml;
         }
-
         private static void CreateNodesForProperties(ExtendedSignedXml signedXml, XmlDsigSignParameters signParameters)
         {
             if (signParameters.Properties != null && signParameters.Properties.Count > 0)
@@ -111,7 +110,6 @@ namespace XadesNetLib.XmlDsig.Signing
                 }
             }
         }
-
         private static void CreateTimestampNodeIfNeeded(ExtendedSignedXml signedXml, XmlDsigSignParameters signParameters)
         {
             if (!signParameters.IncludeTimestamp) return;
@@ -122,7 +120,6 @@ namespace XadesNetLib.XmlDsig.Signing
 
             AddPropertyFromNameAndValue(propertyName, propertyValue, propertyNameSpace, signedXml, signParameters);
         }
-
         private static void AddPropertyFromNameAndValue(string propertyName, string propertyValue, string propertyNameSpace, 
             ExtendedSignedXml signedXml, XmlDsigSignParameters signParameters)
         {
@@ -134,7 +131,6 @@ namespace XadesNetLib.XmlDsig.Signing
             propertyNode.InnerText = propertyValue;
             AddProperty(document, signedXml, propertyNode);
         }
-
         private static void AddProperty(XmlDocument document, ExtendedSignedXml signedXml, XmlElement propertyNode)
         {
             if (signedXml.PropertiesNode == null)
@@ -148,7 +144,6 @@ namespace XadesNetLib.XmlDsig.Signing
 
             signedXml.PropertiesNode.AppendChild(nodeSignatureProperty);
         }
-
         private static XmlElement CreatePropertiesNode(XmlDocument document, ExtendedSignedXml signedXml)
         {
             var dataObject = new DataObject();
@@ -178,7 +173,6 @@ namespace XadesNetLib.XmlDsig.Signing
             certificateKeyInfo.AddClause(new KeyInfoX509Data(certificate));
             signedXml.KeyInfo = certificateKeyInfo;
         }
-
         protected virtual XmlDocument BuildFinalSignedXmlDocument(XmlDocument inputXml, XmlElement signatureXml)
         {
             var xmlDocument = new XmlDocument();

@@ -2,10 +2,10 @@
 
 namespace XadesNetLib.XmlDsig.Common
 {
-    public class XmlDsigValidationParameters
+    public class XmlDsigVerificationParameters
     {
         public string InputPath { get; set; }
-        public X509Certificate2 ValidationCertificate { get; set; }
-        public bool ValidateCertificate { get; set; }
+        public X509Certificate2 VerificationCertificate { get; set; }
+        public bool VerifyCertificate { get; set; }
     }
 }

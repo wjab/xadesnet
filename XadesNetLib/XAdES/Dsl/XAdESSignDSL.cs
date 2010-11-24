@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using XadesNetLib.Common;
 using XadesNetLib.XAdES.Common;
-using XadesNetLib.XAdES.Signing;
+using XadesNetLib.XAdES.Operations;
 
 namespace XadesNetLib.XAdES.Dsl
 {
@@ -66,11 +66,11 @@ namespace XadesNetLib.XAdES.Dsl
         public void SignToFile(string outputPath)
         {
             _parameters.OutputPath = outputPath;
-            XAdESSigner.SignToFile(_parameters);
+            XAdESSignOperation.SignToFile(_parameters);
         }
         public XmlDocument SignAndGetXml()
         {
-            return XAdESSigner.SignAndGetXml(_parameters);
+            return XAdESSignOperation.SignAndGetXml(_parameters);
         }
     }
 }

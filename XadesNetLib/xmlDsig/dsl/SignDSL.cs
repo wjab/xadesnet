@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using XadesNetLib.Common;
 using XadesNetLib.XmlDsig.Common;
-using XadesNetLib.XmlDsig.Signing;
+using XadesNetLib.XmlDsig.Operations;
 
 namespace XadesNetLib.XmlDsig.Dsl
 {
@@ -100,11 +100,11 @@ namespace XadesNetLib.XmlDsig.Dsl
         public void SignToFile(string outputPath)
         {
             _parameters.OutputPath = outputPath;
-            Signer.From(_parameters).Sign(_parameters);
+            XmlDsigSignOperation.From(_parameters).Sign(_parameters);
         }
         public XmlDocument SignAndGetXml()
         {
-            return Signer.From(_parameters).SignAndGetXml(_parameters);
+            return XmlDsigSignOperation.From(_parameters).SignAndGetXml(_parameters);
         }
     }
 }

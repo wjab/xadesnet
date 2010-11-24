@@ -4,25 +4,25 @@ using XadesNetLib.Common;
 using XadesNetLib.XAdES.Common;
 using XadesNetLib.Xml;
 using XadesNetLib.XmlDsig.Common;
-using XadesNetLib.XmlDsig.Signing;
+using XadesNetLib.XmlDsig.Operations;
 using XadesNetLib.Cryptography;
 
-namespace XadesNetLib.XAdES.Signing
+namespace XadesNetLib.XAdES.Operations
 {
-    public abstract class XAdESSigner
+    public abstract class XAdESSignOperation
     {
         public const string XadesNamespaceUrl = "http://uri.etsi.org/01903/v1.3.2#";
 
         public static void SignToFile(XAdESSignParameters parameters)
         {
             var xmlDSigParameters = CreateXmlDSigParametersFrom(parameters);
-            Signer.From(xmlDSigParameters).Sign(xmlDSigParameters, signedXml => AddXAdESNodes(signedXml, xmlDSigParameters));
+            XmlDsigSignOperation.From(xmlDSigParameters).Sign(xmlDSigParameters, signedXml => AddXAdESNodes(signedXml, xmlDSigParameters));
         }
 
         public static XmlDocument SignAndGetXml(XAdESSignParameters parameters)
         {
             var xmlDSigParameters = CreateXmlDSigParametersFrom(parameters);
-            return Signer.From(xmlDSigParameters).SignAndGetXml(xmlDSigParameters, signedXml => AddXAdESNodes(signedXml, xmlDSigParameters));
+            return XmlDsigSignOperation.From(xmlDSigParameters).SignAndGetXml(xmlDSigParameters, signedXml => AddXAdESNodes(signedXml, xmlDSigParameters));
         }
 
         private static void AddXAdESNodes(ExtendedSignedXml signedXml, XmlDsigSignParameters parameters)

@@ -112,7 +112,7 @@ namespace XadesNetLib.XmlDsig.Dsl
         public XmlDocument[] SignAndGetXmls()
         {
             var result = new List<XmlDocument>();
-            ArrayHelper.DoWithNotEmpty(item =>
+            ArrayHelper.DoWithFirstNotEmpty(item =>
                                            {
                                                if (item is string)
                                                {

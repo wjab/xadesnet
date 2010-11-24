@@ -12,7 +12,7 @@ namespace XadesNetLib.Utils
                 arrayToCompare != null && reference.Length == arrayToCompare.Length);
         }
 
-        public static void DoWithNotEmpty(Action<object> action, params object[][] arrays)
+        public static void DoWithFirstNotEmpty(Action<object> action, params object[][] arrays)
         {
             var firstNotEmptyArray = arrays.FirstOrDefault(array => array.Length > 0);
             if (firstNotEmptyArray == null) return;

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{041B6B99-B4AF-4A68-918F-03FCC9999FCD}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -57,7 +57,7 @@
     </Compile>
     <Compile Include="Utils\ArrayHelper.cs" />
     <Compile Include="XAdES\Dsl\XAdESSignDSL.cs" />
-    <Compile Include="XAdES\Signing\XAdESSigner.cs" />
+    <Compile Include="XAdES\Operations\XAdESSignOperation.cs" />
     <Compile Include="XAdES\XAdESHelper.cs" />
     <Compile Include="XAdES\Common\XAdESSignParameters.cs" />
     <Compile Include="XmlDsig\Common\VerificationResults.cs" />
@@ -67,17 +67,18 @@
     <Compile Include="Exceptions\InvalidParameterException.cs" />
     <Compile Include="Exceptions\InvalidSignedDocumentException.cs" />
     <Compile Include="Exceptions\InvalidDocumentException.cs" />
-    <Compile Include="XmlDsig\Signing\Signers\DetachedSigner.cs" />
-    <Compile Include="XmlDsig\Signing\Signers\EnvelopedSigner.cs" />
-    <Compile Include="XmlDsig\Signing\Signers\EnvelopingSigner.cs" />
-    <Compile Include="XmlDsig\Signing\Signer.cs" />
+    <Compile Include="XmlDsig\Operations\Signers\XmlDsigDetachedSignOperation.cs" />
+    <Compile Include="XmlDsig\Operations\Signers\XmlDsigEnvelopedSignOperation.cs" />
+    <Compile Include="XmlDsig\Operations\Signers\XmlDsigEnvelopingSignOperation.cs" />
+    <Compile Include="XmlDsig\Operations\XmlDsigSignOperation.cs" />
     <Compile Include="Common\ExtendedSignedXml.cs" />
     <Compile Include="Common\XmlPropertyDescriptor.cs" />
-    <Compile Include="XmlDsig\Signing\Verifier.cs" />
+    <Compile Include="XmlDsig\Operations\XmlDsigVerifyOperation.cs" />
     <Compile Include="XmlDsig\XmlDsigHelper.cs" />
     <Compile Include="XmlDsig\Common\XmlDsigSignatureFormat.cs" />
     <Compile Include="XmlDsig\Common\XmlDsigSignParameters.cs" />
     <Compile Include="XmlDsig\Common\XmlDsigValidationParameters.cs" />
+    <Compile Include="XmlDsig\Helpers\XmlDsigNodesHelper.cs" />
     <Compile Include="Xml\XmlHelper.cs" />
     <Compile Include="Xml\XmlSchemaDescriptor.cs" />
   </ItemGroup>

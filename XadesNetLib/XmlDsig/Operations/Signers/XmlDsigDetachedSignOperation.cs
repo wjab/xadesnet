@@ -2,9 +2,9 @@
 using System.Xml;
 using XadesNetLib.Exceptions;
 
-namespace XadesNetLib.XmlDsig.Signing.Signers
+namespace XadesNetLib.XmlDsig.Operations.Signers
 {
-    public class DetachedSigner : Signer
+    internal class XmlDsigDetachedSignOperation : XmlDsigSignOperation
     {
         protected override void CreateAndAddReferenceTo(SignedXml signedXml, XmlDocument document, string inputPath, string xpathToNodeToSign)
         {
