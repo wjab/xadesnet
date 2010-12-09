@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -82,13 +81,30 @@ namespace XadesNetLib.Xml
             }
         }
 
-        public static XmlElement DescendantWith(XmlElement rootNode, Func<XmlElement, bool> conditionToComply)
+        public static XmlElement DescendantWith(XmlElement rootNode, Predicate<XmlElement> conditionToComply)
         {
-            return rootNode.ChildNodes.Cast<XmlElement>().FirstOrDefault(conditionToComply);
+            foreach (var childNode in rootNode.ChildNodes)
+            {
+                var xmlElement = (XmlElement) childNode;
+                if (conditionToComply(xmlElement))
+                {
+                    return xmlElement;
+                }
+            }
+            return null;
         }
-        public static List<XmlElement> DescendantsWith(XmlElement rootNode, Func<XmlElement, bool> conditionToComply)
+        public static List<XmlElement> DescendantsWith(XmlElement rootNode, Predicate<XmlElement> conditionToComply)
         {
-            return rootNode.ChildNodes.Cast<XmlElement>().Where(conditionToComply).ToList();
+            var results = new List<XmlElement>();
+            foreach (var childNode in rootNode.ChildNodes)
+            {
+                var xmlElement = (XmlElement) childNode;
+                if (conditionToComply(xmlElement))
+                {
+                    results.Add(xmlElement);
+                }
+            }
+            return results;
         }
 
         public static List<XmlElement> FindNodesIn(XmlElement rootNode, string path)
