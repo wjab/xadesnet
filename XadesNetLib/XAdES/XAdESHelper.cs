@@ -1,7 +1,5 @@
-﻿using System;
-using System.Xml;
+﻿using System.Xml;
 using XadesNetLib.Xades.Dsl;
-using XadesNetLib.XAdES.Dsl;
 
 namespace XadesNetLib.XAdES
 {

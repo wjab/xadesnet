@@ -56,12 +56,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\ArrayHelper.cs" />
-    <Compile Include="Xades\Dsl\XadesSignDSL.cs" />
+    <Compile Include="Xades\Dsl\XadesSignDsl.cs" />
     <Compile Include="Xades\Dsl\XadesVerifyDsl.cs" />
     <Compile Include="Xades\Operations\XadesSignOperation.cs" />
     <Compile Include="Xades\Operations\XadesVerifyOperation.cs" />
     <Compile Include="Xades\XadesHelper.cs" />
-    <Compile Include="Xades\Common\XAdESSignParameters.cs" />
+    <Compile Include="Xades\Common\XadesSignParameters.cs" />
     <Compile Include="XmlDsig\Common\VerificationResults.cs" />
     <Compile Include="XmlDsig\Dsl\BatchSignDSL.cs" />
     <Compile Include="XmlDsig\Dsl\SignDSL.cs" />

@@ -1,25 +1,25 @@
 ﻿using System.Security.Cryptography.Xml;
 using System.Xml;
 using XadesNetLib.Common;
-using XadesNetLib.XAdES.Common;
+using XadesNetLib.Xades.Common;
 using XadesNetLib.Xml;
 using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Operations;
 using XadesNetLib.Cryptography;
 
-namespace XadesNetLib.XAdES.Operations
+namespace XadesNetLib.Xades.Operations
 {
     public abstract class XadesSignOperation
     {
         public const string XadesNamespaceUrl = "http://uri.etsi.org/01903/v1.3.2#";
 
-        public static void SignToFile(XAdESSignParameters parameters)
+        public static void SignToFile(XadesSignParameters parameters)
         {
             var xmlDSigParameters = CreateXmlDSigParametersFrom(parameters);
             XmlDsigSignOperation.From(xmlDSigParameters).Sign(xmlDSigParameters, signedXml => AddXAdESNodes(signedXml, xmlDSigParameters));
         }
 
-        public static XmlDocument SignAndGetXml(XAdESSignParameters parameters)
+        public static XmlDocument SignAndGetXml(XadesSignParameters parameters)
         {
             var xmlDSigParameters = CreateXmlDSigParametersFrom(parameters);
             return XmlDsigSignOperation.From(xmlDSigParameters).SignAndGetXml(xmlDSigParameters, signedXml => AddXAdESNodes(signedXml, xmlDSigParameters));
@@ -106,20 +106,18 @@ namespace XadesNetLib.XAdES.Operations
             return XmlHelper.CreateNodeIn(document, "UnsignedSignatureProperties", XadesNamespaceUrl, unsignedPropertiesNode);
         }
 
-        private static XmlDsigSignParameters CreateXmlDSigParametersFrom(XAdESSignParameters xadEsSignParameters)
+        private static XmlDsigSignParameters CreateXmlDSigParametersFrom(XadesSignParameters xadesSignParameters)
         {
-            // TODO Check for all formats in SignatureFormat
-
             return new XmlDsigSignParameters
             {
-                IncludeCertificateInSignature = xadEsSignParameters.IncludeCertificateInSignature,
+                IncludeCertificateInSignature = xadesSignParameters.IncludeCertificateInSignature,
                 IncludeTimestamp = false,
-                InputPath = xadEsSignParameters.InputPath,
-                InputXml = xadEsSignParameters.InputXml,
-                OutputPath = xadEsSignParameters.OutputPath,
-                Properties = xadEsSignParameters.Properties,
-                PropertyBuilders = xadEsSignParameters.PropertyBuilders,
-                SignatureCertificate = xadEsSignParameters.SignatureCertificate,
+                InputPath = xadesSignParameters.InputPath,
+                InputXml = xadesSignParameters.InputXml,
+                OutputPath = xadesSignParameters.OutputPath,
+                Properties = xadesSignParameters.Properties,
+                PropertyBuilders = xadesSignParameters.PropertyBuilders,
+                SignatureCertificate = xadesSignParameters.SignatureCertificate,
                 SignatureFormat = XmlDsigSignatureFormat.Enveloped
             };
         }

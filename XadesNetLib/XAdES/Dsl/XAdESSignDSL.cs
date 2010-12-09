@@ -2,14 +2,14 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using XadesNetLib.Common;
-using XadesNetLib.XAdES.Common;
-using XadesNetLib.XAdES.Operations;
+using XadesNetLib.Xades.Common;
+using XadesNetLib.Xades.Operations;
 
-namespace XadesNetLib.XAdES.Dsl
+namespace XadesNetLib.Xades.Dsl
 {
     public class XadesSignDsl
     {
-        private readonly XAdESSignParameters _parameters = new XAdESSignParameters();
+        private readonly XadesSignParameters _parameters = new XadesSignParameters();
 
         public XadesSignDsl InputPath(string inputPath)
         {

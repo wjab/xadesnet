@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using XadesNetLib.Signatures.Verification;
+﻿using XadesNetLib.Signatures.Verification;
 using XadesNetLib.Xades.Operations;
 using XadesNetLib.XmlDsig.Common;
 
@@ -12,12 +11,6 @@ namespace XadesNetLib.Xades.Dsl
         public XadesVerifyDsl SignaturePath(string signaturePath)
         {
             _parameters.InputPath = signaturePath;
-            return this;
-        }
-
-        public XadesVerifyDsl Using(X509Certificate2 validationCertificate)
-        {
-            _parameters.VerificationCertificate = validationCertificate;
             return this;
         }
 

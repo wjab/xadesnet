@@ -4,9 +4,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using XadesNetLib.Common;
 
-namespace XadesNetLib.XAdES.Common
+namespace XadesNetLib.Xades.Common
 {
-    public class XAdESSignParameters
+    public class XadesSignParameters
     {
         public string InputPath { get; set; }
         public XmlDocument InputXml { get; set; }
