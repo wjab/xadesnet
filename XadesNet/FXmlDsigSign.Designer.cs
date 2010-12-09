@@ -1,6 +1,6 @@
 ﻿namespace XadesNet
 {
-    partial class FSign
+    partial class FXmlDsigSign
     {
         /// <summary>
         /// Variable del diseñador requerida.

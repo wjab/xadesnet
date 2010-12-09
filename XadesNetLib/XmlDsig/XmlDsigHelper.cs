@@ -18,9 +18,9 @@ namespace XadesNetLib.XmlDsig
             return signDsl;
         }
 
-        public static VerificationDSL Verify(string signaturePath)
+        public static VerificationDsl Verify(string signaturePath)
         {
-            var validationDsl = new VerificationDSL();
+            var validationDsl = new VerificationDsl();
             validationDsl.SignaturePath(signaturePath);
             return validationDsl;
         }

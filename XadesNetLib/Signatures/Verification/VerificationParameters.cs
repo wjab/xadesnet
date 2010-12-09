@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace XadesNetLib.XmlDsig.Common
+namespace XadesNetLib.Signatures.Verification
 {
-    public class XmlDsigVerificationParameters
+    public class VerificationParameters
     {
         public string InputPath { get; set; }
         public X509Certificate2 VerificationCertificate { get; set; }

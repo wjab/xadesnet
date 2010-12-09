@@ -1,6 +1,6 @@
 ﻿namespace XadesNet
 {
-    partial class FVerify
+    partial class FXadesVerify
     {
         /// <summary>
         /// Required designer variable.

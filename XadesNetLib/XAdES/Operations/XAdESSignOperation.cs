@@ -9,7 +9,7 @@ using XadesNetLib.Cryptography;
 
 namespace XadesNetLib.XAdES.Operations
 {
-    public abstract class XAdESSignOperation
+    public abstract class XadesSignOperation
     {
         public const string XadesNamespaceUrl = "http://uri.etsi.org/01903/v1.3.2#";
 
@@ -36,7 +36,7 @@ namespace XadesNetLib.XAdES.Operations
             AddSigningCertificate(document, signedSignatureProperties, parameters);
             //AddSignaturePolicyIdentifier(document, signedSignatureProperties);
             var unsignedPropertiesNode = AddUnsignedPropertiesNode(document, qualifyingPropertiesNode);
-            var unsignedSignatureProperties = AddUnsignedSignaturePropertiesNode(document, unsignedPropertiesNode);
+            AddUnsignedSignaturePropertiesNode(document, unsignedPropertiesNode);
         }
 
         private static void CreateReferenceToSignedProperties(ExtendedSignedXml signedXml, XmlElement signedPropertiesNode)
@@ -70,25 +70,22 @@ namespace XadesNetLib.XAdES.Operations
         }
         private static void AddSigningTimeNode(XmlDocument document, XmlElement signedSignaturePropertiesNode)
         {
-            // TODO It should use the same Datetime as in XMLDSIG Signature
-
             XmlHelper.CreateNodeWithTextIn(document, "SigningTime", XmlHelper.NowInCanonicalRepresentation(),
                 XadesNamespaceUrl, signedSignaturePropertiesNode);
         }
         private static void AddSigningCertificate(XmlDocument document, XmlElement signedSignatureProperties, XmlDsigSignParameters parameters)
         {
-            var certNode = XmlHelper.CreateNodeIn(document, "Cert", XadesNamespaceUrl, signedSignatureProperties);
+            var signingCertificateNode = XmlHelper.CreateNodeIn(document, "SigningCertificate", XadesNamespaceUrl, signedSignatureProperties);
+            var certNode = XmlHelper.CreateNodeIn(document, "Cert", XadesNamespaceUrl, signingCertificateNode);
             AddCertDigestNode(document, certNode, parameters);
             AddIssuerSerialNode(document, certNode, parameters);
         }
         private static void AddCertDigestNode(XmlDocument document, XmlElement certNode, XmlDsigSignParameters parameters)
         {
-            // TODO Include other Hash methods ?
-
             var certDigestNode = XmlHelper.CreateNodeIn(document, "CertDigest", XadesNamespaceUrl, certNode);
             XmlHelper.CreateNodeWithTextIn(document, "DigestMethod", SignedXml.XmlDsigSHA1Url, SignedXml.XmlDsigNamespaceUrl, certDigestNode);
             var certificateData = parameters.SignatureCertificate.RawData;
-            var digestValue = CryptoHelper.GetBytesSHA1(certificateData);
+            var digestValue = CryptoHelper.GetBase64SHA1(certificateData);
             XmlHelper.CreateNodeWithTextIn(document, "DigestValue", digestValue, SignedXml.XmlDsigNamespaceUrl, certDigestNode);
         }
         private static void AddIssuerSerialNode(XmlDocument document, XmlElement certNode, XmlDsigSignParameters parameters)

@@ -7,28 +7,28 @@ using XadesNetLib.XAdES.Operations;
 
 namespace XadesNetLib.XAdES.Dsl
 {
-    public class XAdESSignDSL
+    public class XadesSignDsl
     {
         private readonly XAdESSignParameters _parameters = new XAdESSignParameters();
 
-        public XAdESSignDSL InputPath(string inputPath)
+        public XadesSignDsl InputPath(string inputPath)
         {
             _parameters.InputPath = inputPath;
             return this;
         }
-        public XAdESSignDSL InputXml(XmlDocument xmlDocument)
+        public XadesSignDsl InputXml(XmlDocument xmlDocument)
         {
             _parameters.InputXml = xmlDocument;
             return this;
         }
 
-        public XAdESSignDSL Using(X509Certificate2 certificate)
+        public XadesSignDsl Using(X509Certificate2 certificate)
         {
             _parameters.SignatureCertificate = certificate;
             return this;
         }
 
-        public XAdESSignDSL WithProperty(string propertyName, string propertyValue)
+        public XadesSignDsl WithProperty(string propertyName, string propertyValue)
         {
             _parameters.Properties.Add(new XmlPropertyDescriptor
                                            {
@@ -37,7 +37,7 @@ namespace XadesNetLib.XAdES.Dsl
                                            });
             return this;
         }
-        public XAdESSignDSL WithProperty(string propertyName, string propertyValue, string propertyNameSpace)
+        public XadesSignDsl WithProperty(string propertyName, string propertyValue, string propertyNameSpace)
         {
             _parameters.Properties.Add(new XmlPropertyDescriptor
             {
@@ -47,17 +47,17 @@ namespace XadesNetLib.XAdES.Dsl
             });
             return this;
         }
-        public XAdESSignDSL WithPropertyBuiltFromDoc(Converter<XmlDocument, XmlElement> howToCreatePropertyNodeFromDoc)
+        public XadesSignDsl WithPropertyBuiltFromDoc(Converter<XmlDocument, XmlElement> howToCreatePropertyNodeFromDoc)
         {
             _parameters.PropertyBuilders.Add(howToCreatePropertyNodeFromDoc);
             return this;
         }
-        public XAdESSignDSL IncludingCertificateInSignature()
+        public XadesSignDsl IncludingCertificateInSignature()
         {
             _parameters.IncludeCertificateInSignature = true;
             return this;
         }
-        public XAdESSignDSL DoNotIncludeCertificateInSignature()
+        public XadesSignDsl DoNotIncludeCertificateInSignature()
         {
             _parameters.IncludeCertificateInSignature = false;
             return this;
@@ -66,11 +66,11 @@ namespace XadesNetLib.XAdES.Dsl
         public void SignToFile(string outputPath)
         {
             _parameters.OutputPath = outputPath;
-            XAdESSignOperation.SignToFile(_parameters);
+            XadesSignOperation.SignToFile(_parameters);
         }
         public XmlDocument SignAndGetXml()
         {
-            return XAdESSignOperation.SignAndGetXml(_parameters);
+            return XadesSignOperation.SignAndGetXml(_parameters);
         }
     }
 }

@@ -1,32 +1,32 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using XadesNetLib.Signatures.Verification;
+using XadesNetLib.Xades.Operations;
 using XadesNetLib.XmlDsig.Common;
-using XadesNetLib.XmlDsig.Operations;
 
-namespace XadesNetLib.XmlDsig.Dsl
+namespace XadesNetLib.Xades.Dsl
 {
-    public class VerificationDsl
+    public class XadesVerifyDsl
     {
         private readonly VerificationParameters _parameters = new VerificationParameters();
 
-        public VerificationDsl SignaturePath(string signaturePath)
+        public XadesVerifyDsl SignaturePath(string signaturePath)
         {
             _parameters.InputPath = signaturePath;
             return this;
         }
 
-        public VerificationDsl Using(X509Certificate2 validationCertificate)
+        public XadesVerifyDsl Using(X509Certificate2 validationCertificate)
         {
             _parameters.VerificationCertificate = validationCertificate;
             return this;
         }
 
-        public VerificationDsl AlsoVerifyCertificate()
+        public XadesVerifyDsl AlsoVerifyCertificate()
         {
             _parameters.VerifyCertificate = true;
             return this;
         }
-        public VerificationDsl DoNotVerifyCertificate()
+        public XadesVerifyDsl DoNotVerifyCertificate()
         {
             _parameters.VerifyCertificate = false;
             return this;
@@ -34,12 +34,12 @@ namespace XadesNetLib.XmlDsig.Dsl
 
         public void Perform()
         {
-            XmlDsigVerifyOperation.Verify(_parameters);
+            XadesVerifyOperation.Verify(_parameters);
         }
 
         public VerificationResults PerformAndGetResults()
         {
-            return XmlDsigVerifyOperation.VerifyAndGetResults(_parameters);
+            return XadesVerifyOperation.VerifyAndGetResults(_parameters);
         }
     }
 }

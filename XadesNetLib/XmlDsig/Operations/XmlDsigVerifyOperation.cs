@@ -4,6 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 using XadesNetLib.Exceptions;
+using XadesNetLib.Signatures.Verification;
 using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.Xml;
 using XadesNetLib.XmlDsig.Helpers;
@@ -12,12 +13,12 @@ namespace XadesNetLib.XmlDsig.Operations
 {
     internal abstract class XmlDsigVerifyOperation
     {
-        internal static bool Verify(XmlDsigVerificationParameters parameters)
+        internal static bool Verify(VerificationParameters parameters)
         {
             VerifyAndGetResults(parameters);
             return true;
         }
-        internal static VerificationResults VerifyAndGetResults(XmlDsigVerificationParameters parameters)
+        internal static VerificationResults VerifyAndGetResults(VerificationParameters parameters)
         {
             //XmlHelper.ValidateFromSchemas(parameters.InputPath,
             //                              new XmlSchemaDescriptor
@@ -33,7 +34,7 @@ namespace XadesNetLib.XmlDsig.Operations
 
         #region Private methods
 
-        private static VerificationResults PerformValidationFromXml(string xml, XmlDsigVerificationParameters validationParameters)
+        private static VerificationResults PerformValidationFromXml(string xml, VerificationParameters validationParameters)
         {
             var document = new XmlDocument { PreserveWhitespace = false };
             document.LoadXml(xml);
@@ -43,7 +44,7 @@ namespace XadesNetLib.XmlDsig.Operations
 
             newsignedXml.LoadXml(XmlDsigNodesHelper.GetSignatureNode(document));
 
-            X509Certificate2 verificationCertificate = GetVerificationCertificate(newsignedXml, validationParameters);
+            var verificationCertificate = GetVerificationCertificate(newsignedXml, validationParameters);
             if (verificationCertificate == null) throw new Exception("Signer public key could not be found");
             if (!newsignedXml.CheckSignature(verificationCertificate, !validationParameters.VerifyCertificate))
             {
@@ -57,7 +58,7 @@ namespace XadesNetLib.XmlDsig.Operations
                               };
             return results;
         }
-        private static X509Certificate2 GetVerificationCertificate(SignedXml signedXml, XmlDsigVerificationParameters verificationParameters)
+        private static X509Certificate2 GetVerificationCertificate(SignedXml signedXml, VerificationParameters verificationParameters)
         {
             var validationCertificate = verificationParameters.VerificationCertificate;
             if (validationCertificate == null)

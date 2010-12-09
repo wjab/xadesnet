@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{041B6B99-B4AF-4A68-918F-03FCC9999FCD}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -56,10 +56,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\ArrayHelper.cs" />
-    <Compile Include="XAdES\Dsl\XAdESSignDSL.cs" />
-    <Compile Include="XAdES\Operations\XAdESSignOperation.cs" />
-    <Compile Include="XAdES\XAdESHelper.cs" />
-    <Compile Include="XAdES\Common\XAdESSignParameters.cs" />
+    <Compile Include="Xades\Dsl\XadesSignDSL.cs" />
+    <Compile Include="Xades\Dsl\XadesVerifyDsl.cs" />
+    <Compile Include="Xades\Operations\XadesSignOperation.cs" />
+    <Compile Include="Xades\Operations\XadesVerifyOperation.cs" />
+    <Compile Include="Xades\XadesHelper.cs" />
+    <Compile Include="Xades\Common\XAdESSignParameters.cs" />
     <Compile Include="XmlDsig\Common\VerificationResults.cs" />
     <Compile Include="XmlDsig\Dsl\BatchSignDSL.cs" />
     <Compile Include="XmlDsig\Dsl\SignDSL.cs" />
@@ -77,7 +79,7 @@
     <Compile Include="XmlDsig\XmlDsigHelper.cs" />
     <Compile Include="XmlDsig\Common\XmlDsigSignatureFormat.cs" />
     <Compile Include="XmlDsig\Common\XmlDsigSignParameters.cs" />
-    <Compile Include="XmlDsig\Common\XmlDsigValidationParameters.cs" />
+    <Compile Include="Signatures\Verification\VerificationParameters.cs" />
     <Compile Include="XmlDsig\Helpers\XmlDsigNodesHelper.cs" />
     <Compile Include="Xml\XmlHelper.cs" />
     <Compile Include="Xml\XmlSchemaDescriptor.cs" />

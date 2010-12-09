@@ -4,9 +4,9 @@ using XadesNetLib.XmlDsig;
 
 namespace XadesNet
 {
-    public partial class FVerify : Form
+    public partial class FXmlDsigVerify : Form
     {
-        public FVerify()
+        public FXmlDsigVerify()
         {
             InitializeComponent();
         }

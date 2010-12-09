@@ -1,28 +1,30 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
+using XadesNetLib.Xades.Dsl;
 using XadesNetLib.XAdES.Dsl;
 
 namespace XadesNetLib.XAdES
 {
-    public class XAdESHelper
+    public class XadesHelper
     {
-        public static XAdESSignDSL Sign(string inputPath)
+        public static XadesSignDsl Sign(string inputPath)
         {
-            var signDsl = new XAdESSignDSL();
+            var signDsl = new XadesSignDsl();
             signDsl.InputPath(inputPath);
             return signDsl;
         }
-        public static XAdESSignDSL Sign(XmlDocument xmlDocument)
+        public static XadesSignDsl Sign(XmlDocument xmlDocument)
         {
-            var signDsl = new XAdESSignDSL();
+            var signDsl = new XadesSignDsl();
             signDsl.InputXml(xmlDocument);
             return signDsl;
         }
 
-        //public static XAdESVerificationDSL Verify(string signaturePath)
-        //{
-        //    var validationDsl = new XAdESVerificationDSL();
-        //    validationDsl.SignaturePath(signaturePath);
-        //    return validationDsl;
-        //}
+        public static XadesVerifyDsl Verify(string signaturePath)
+        {
+            var verifyDsl = new XadesVerifyDsl();
+            verifyDsl.SignaturePath(signaturePath);
+            return verifyDsl;
+        }
     }
 }

@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
-using XadesNetLib.XmlDsig;
+using XadesNetLib.XAdES;
 using XadesNetLib.Certificates;
-using XadesNetLib.XmlDsig.Common;
 
 namespace XadesNet
 {
-    public partial class FSign : Form
+    public partial class FXadesSign : Form
     {
-        public FSign()
+        public FXadesSign()
         {
             InitializeComponent();
         }
@@ -19,31 +17,19 @@ namespace XadesNet
         {
             var outputPath = txtOutputFile.Text;
             var selectedCertificate = GetSelectedCertificate();
-            var selectedFormat = GetSelectedSignatureFormat();
             var inputPath = txtFileToSign.Text;
-            var xpathToNodeToSign = txtNodeToSign.Text ?? "";
-            if (!"".Equals(xpathToNodeToSign))
-            {
-                if (!xpathToNodeToSign.StartsWith("#")) xpathToNodeToSign = "#" + xpathToNodeToSign;
-            }
 
             var howToSign =
-                XmlDsigHelper.Sign(inputPath).Using(selectedCertificate).UsingFormat(selectedFormat)
-                    .IncludingCertificateInSignature().IncludeTimestamp(chkIncludeTimestamp.Checked)
-                    .NodeToSign(xpathToNodeToSign);
+                XadesHelper.Sign(inputPath).Using(selectedCertificate).
+                    IncludingCertificateInSignature();
             if (chkAddProperty.Checked)
             {
                 howToSign.WithProperty(txtPropertyName.Text, txtPropertyValue.Text, "http://xades.codeplex.com/#properties");
             }
             howToSign.SignToFile(outputPath);
-            XmlDsigHelper.Verify(outputPath).Perform();
+            XadesHelper.Verify(outputPath).Perform();
 
             MessageBox.Show(@"Signature created and verified successfully :)");
-        }
-
-        private XmlDsigSignatureFormat GetSelectedSignatureFormat()
-        {
-            return (XmlDsigSignatureFormat)cmbSignatureFormat.SelectedItem;
         }
 
         private X509Certificate2 GetSelectedCertificate()
@@ -56,13 +42,6 @@ namespace XadesNet
             var certificates = CertificatesHelper.GetCertificatesFrom(CertificateStore.My);
             cmbSignCertificate.DisplayMember = "Subject";
             cmbSignCertificate.DataSource = certificates;
-            var formats = new List<XmlDsigSignatureFormat>
-                              {
-                                  XmlDsigSignatureFormat.Detached,
-                                  XmlDsigSignatureFormat.Enveloped,
-                                  XmlDsigSignatureFormat.Enveloping
-                              };
-            cmbSignatureFormat.DataSource = formats;
         }
 
         private void btnBrowseFileToSign_Click(object sender, EventArgs e)
