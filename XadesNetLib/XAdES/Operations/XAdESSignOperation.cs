@@ -1,11 +1,11 @@
 ﻿using System.Security.Cryptography.Xml;
 using System.Xml;
 using XadesNetLib.Common;
+using XadesNetLib.Utils.Cryptography;
+using XadesNetLib.Utils.Xml;
 using XadesNetLib.Xades.Common;
-using XadesNetLib.Xml;
 using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Operations;
-using XadesNetLib.Cryptography;
 
 namespace XadesNetLib.Xades.Operations
 {

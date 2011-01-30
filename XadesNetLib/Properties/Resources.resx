@@ -124,4 +124,7 @@
   <data name="xmldsig_core_schema" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\schemas\xmldsig-core-schema.xsd;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="XMLSchema" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\schemas\xmlschema.dtd;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

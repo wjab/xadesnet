@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
-using XadesNetLib.Certificates.Exceptions;
+using XadesNetLib.Utils.Certificates.Exceptions;
 
-namespace XadesNetLib.Certificates
+namespace XadesNetLib.Utils.Certificates
 {
     public enum CertificateStore
     {

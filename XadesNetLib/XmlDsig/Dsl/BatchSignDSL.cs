@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
-using XadesNetLib.Exceptions;
+using XadesNetLib.Common.Exceptions;
 using XadesNetLib.Utils;
 using XadesNetLib.XmlDsig.Common;
 using System.Collections.Generic;

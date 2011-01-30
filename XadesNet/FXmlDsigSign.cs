@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
+using XadesNetLib.Utils.Certificates;
 using XadesNetLib.XmlDsig;
-using XadesNetLib.Certificates;
 using XadesNetLib.XmlDsig.Common;
 
 namespace XadesNet

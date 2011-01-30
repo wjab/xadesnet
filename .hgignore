@@ -9,3 +9,8 @@ glob:LoDellos/*
 glob:recursos\*
 glob:TestResult.xml
 glob:XadesNetTest.VisualState.xml
+glob:Security/*
+glob:dist/*
+glob:XadesNet.4.5.resharper.user
+glob:XadesNet.sln.cache
+glob:project.build

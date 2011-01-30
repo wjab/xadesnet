@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
+using XadesNetLib.Schemas;
 
-namespace XadesNetLib.Xml
+namespace XadesNetLib.Utils.Xml
 {
     class XmlHelper
     {
+        public static string XmlSchemaUrl = "http://www.w3.org/2001/XMLSchema.dtd";
+
         public static XmlElement CreateNodeIn(XmlDocument document, string nodeName, string nameSpace, XmlElement rootNode)
         {
             var result = document.CreateElement(nodeName, nameSpace);
@@ -63,17 +66,16 @@ namespace XadesNetLib.Xml
             return null;
         }
 
-        public static void ValidateFromSchemas(string inputPath, params XmlSchemaDescriptor[] schemas)
+        public static void ValidateFromSchemas(string inputPath, params string[] schemas)
         {
             var xmlReader = new XmlTextReader(inputPath);
 
             var settings = new XmlReaderSettings { ProhibitDtd = false, ValidationType = ValidationType.Schema };
             settings.ValidationFlags = settings.ValidationFlags | XmlSchemaValidationFlags.ReportValidationWarnings;
 
-            foreach (var xmlSchemaDescriptor in schemas)
+            foreach (var xmlSchemaUri in schemas)
             {
-                settings.Schemas.Add(xmlSchemaDescriptor.Namespace, XmlReader.Create(xmlSchemaDescriptor.Path, settings));
-                
+                settings.Schemas.Add(xmlSchemaUri, SignatureSchemas.Get(xmlSchemaUri));
             }
             using (var valReader = XmlReader.Create(xmlReader, settings))
             {
@@ -85,6 +87,7 @@ namespace XadesNetLib.Xml
         {
             foreach (var childNode in rootNode.ChildNodes)
             {
+                if (!(childNode is XmlElement)) continue;
                 var xmlElement = (XmlElement) childNode;
                 if (conditionToComply(xmlElement))
                 {
@@ -98,6 +101,7 @@ namespace XadesNetLib.Xml
             var results = new List<XmlElement>();
             foreach (var childNode in rootNode.ChildNodes)
             {
+                if (!(childNode is XmlElement)) continue;
                 var xmlElement = (XmlElement) childNode;
                 if (conditionToComply(xmlElement))
                 {
@@ -111,9 +115,9 @@ namespace XadesNetLib.Xml
         {
             var results = new List<XmlElement>();
             if (string.IsNullOrEmpty(path)) return results;
-            if (!path.Contains("/")) return DescendantsWith(rootNode, n => path.Equals(n.Name));
+            if (!path.Contains("/")) return DescendantsWith(rootNode, n => path.Equals(n.LocalName));
             var token = path.Split('/')[0];
-            var descendantsWithNameCorrect = DescendantsWith(rootNode, n => token.Equals(n.Name));
+            var descendantsWithNameCorrect = DescendantsWith(rootNode, n => token.Equals(n.LocalName));
             if (descendantsWithNameCorrect.Count == 0) return results;
             foreach (var xmlElement in descendantsWithNameCorrect)
             {

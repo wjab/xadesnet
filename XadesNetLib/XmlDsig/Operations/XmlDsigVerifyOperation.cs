@@ -3,10 +3,10 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
-using XadesNetLib.Exceptions;
-using XadesNetLib.Signatures.Verification;
+using XadesNetLib.Common;
+using XadesNetLib.Common.Exceptions;
+using XadesNetLib.Utils.Xml;
 using XadesNetLib.XmlDsig.Common;
-using XadesNetLib.Xml;
 using XadesNetLib.XmlDsig.Helpers;
 
 namespace XadesNetLib.XmlDsig.Operations
@@ -20,13 +20,8 @@ namespace XadesNetLib.XmlDsig.Operations
         }
         internal static VerificationResults VerifyAndGetResults(VerificationParameters parameters)
         {
-            //XmlHelper.ValidateFromSchemas(parameters.InputPath,
-            //                              new XmlSchemaDescriptor
-            //                                  {
-            //                                      Namespace = SignedXml.XmlDsigNamespaceUrl,
-            //                                      Path = "Schemas/xmldsig-core-schema.xsd"
-            //                                  });
-            var xmlDocument = new XmlDocument { PreserveWhitespace = false };
+            //XmlHelper.ValidateFromSchemas(parameters.InputPath, XmlHelper.XmlSchemaUrl, SignedXml.XmlDsigNamespaceUrl);
+            var xmlDocument = new XmlDocument { PreserveWhitespace = true };
             xmlDocument.LoadXml(File.ReadAllText(parameters.InputPath));
             var xml = xmlDocument.OuterXml;
             return PerformValidationFromXml(xml, parameters);
@@ -36,13 +31,14 @@ namespace XadesNetLib.XmlDsig.Operations
 
         private static VerificationResults PerformValidationFromXml(string xml, VerificationParameters validationParameters)
         {
-            var document = new XmlDocument { PreserveWhitespace = false };
+            var document = new XmlDocument { PreserveWhitespace = true };
             document.LoadXml(xml);
 
-            var newsignedXml = new SignedXml(document);
+            var newsignedXml = new ExtendedSignedXml(document);
             if (document.DocumentElement == null) throw new InvalidDocumentException("Document has no root element");
 
-            newsignedXml.LoadXml(XmlDsigNodesHelper.GetSignatureNode(document));
+            var signatureNode = XmlDsigNodesHelper.GetSignatureNode(document);
+            newsignedXml.LoadXml(signatureNode);
 
             var verificationCertificate = GetVerificationCertificate(newsignedXml, validationParameters);
             if (verificationCertificate == null) throw new Exception("Signer public key could not be found");
@@ -121,7 +117,7 @@ namespace XadesNetLib.XmlDsig.Operations
         }
         private static XmlDocument GetDocumentFromEnvelopedSignature(XmlDocument signedXml)
         {
-            if (signedXml.DocumentElement == null) 
+            if (signedXml.DocumentElement == null)
                 throw new InvalidParameterException("Root node cannot be found in signed XML");
             var results = new XmlDocument();
             results.LoadXml(signedXml.OuterXml);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace XadesNetLib.Certificates.Exceptions
+namespace XadesNetLib.Utils.Certificates.Exceptions
 {
     [Serializable]
     public class CertificateStoreAccessDeniedException : Exception
@@ -16,13 +16,13 @@ namespace XadesNetLib.Certificates.Exceptions
         }
 
         public CertificateStoreAccessDeniedException(string message,
-      Exception innerException)
+                                                     Exception innerException)
             : base(message, innerException)
         {
         }
 
         protected CertificateStoreAccessDeniedException(SerializationInfo info,
-      StreamingContext context)
+                                                        StreamingContext context)
             : base(info, context)
         {
         }

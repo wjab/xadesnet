@@ -1,4 +1,4 @@
-﻿using XadesNetLib.Signatures.Verification;
+﻿using XadesNetLib.Common;
 using XadesNetLib.Xades.Operations;
 using XadesNetLib.XmlDsig.Common;
 

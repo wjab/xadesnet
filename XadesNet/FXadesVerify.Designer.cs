@@ -43,7 +43,8 @@
             // 
             // btnBrowseFileToValidate
             // 
-            this.btnBrowseFileToValidate.Location = new System.Drawing.Point(428, 33);
+            this.btnBrowseFileToValidate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseFileToValidate.Location = new System.Drawing.Point(427, 33);
             this.btnBrowseFileToValidate.Name = "btnBrowseFileToValidate";
             this.btnBrowseFileToValidate.Size = new System.Drawing.Size(34, 23);
             this.btnBrowseFileToValidate.TabIndex = 10;
@@ -53,9 +54,11 @@
             // 
             // txtFileToValidate
             // 
+            this.txtFileToValidate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileToValidate.Location = new System.Drawing.Point(15, 35);
             this.txtFileToValidate.Name = "txtFileToValidate";
-            this.txtFileToValidate.Size = new System.Drawing.Size(407, 20);
+            this.txtFileToValidate.Size = new System.Drawing.Size(406, 20);
             this.txtFileToValidate.TabIndex = 9;
             // 
             // label2
@@ -69,8 +72,8 @@
             // 
             // btnValidate
             // 
-            this.btnValidate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnValidate.Location = new System.Drawing.Point(387, 62);
+            this.btnValidate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnValidate.Location = new System.Drawing.Point(386, 62);
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(75, 23);
             this.btnValidate.TabIndex = 11;
@@ -84,22 +87,29 @@
             // 
             // txtOriginalXml
             // 
+            this.txtOriginalXml.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOriginalXml.Location = new System.Drawing.Point(15, 118);
             this.txtOriginalXml.Multiline = true;
             this.txtOriginalXml.Name = "txtOriginalXml";
-            this.txtOriginalXml.Size = new System.Drawing.Size(447, 186);
+            this.txtOriginalXml.Size = new System.Drawing.Size(446, 193);
             this.txtOriginalXml.TabIndex = 12;
             // 
             // txtCertificate
             // 
-            this.txtCertificate.Location = new System.Drawing.Point(108, 310);
+            this.txtCertificate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCertificate.Location = new System.Drawing.Point(107, 317);
             this.txtCertificate.Name = "txtCertificate";
             this.txtCertificate.Size = new System.Drawing.Size(354, 20);
             this.txtCertificate.TabIndex = 13;
             // 
             // txtTimestamp
             // 
-            this.txtTimestamp.Location = new System.Drawing.Point(108, 336);
+            this.txtTimestamp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTimestamp.Location = new System.Drawing.Point(107, 343);
             this.txtTimestamp.Name = "txtTimestamp";
             this.txtTimestamp.Size = new System.Drawing.Size(354, 20);
             this.txtTimestamp.TabIndex = 14;
@@ -115,8 +125,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 314);
+            this.label3.Location = new System.Drawing.Point(12, 321);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 15;
@@ -124,18 +135,19 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 339);
+            this.label4.Location = new System.Drawing.Point(12, 346);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 15;
             this.label4.Text = "Timestamp:";
             // 
-            // FVerify
+            // FXadesVerify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 382);
+            this.ClientSize = new System.Drawing.Size(477, 389);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -146,7 +158,7 @@
             this.Controls.Add(this.btnBrowseFileToValidate);
             this.Controls.Add(this.txtFileToValidate);
             this.Controls.Add(this.label2);
-            this.Name = "FVerify";
+            this.Name = "FXadesVerify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FValidate";
             this.ResumeLayout(false);

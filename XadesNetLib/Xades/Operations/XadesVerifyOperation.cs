@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
-using XadesNetLib.Cryptography;
-using XadesNetLib.Exceptions;
-using XadesNetLib.Signatures.Verification;
+using XadesNetLib.Common;
+using XadesNetLib.Common.Exceptions;
 using XadesNetLib.Utils;
+using XadesNetLib.Utils.Cryptography;
+using XadesNetLib.Utils.Xml;
 using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Operations;
-using XadesNetLib.Xml;
 
 namespace XadesNetLib.Xades.Operations
 {
@@ -36,7 +36,6 @@ namespace XadesNetLib.Xades.Operations
             {
                 throw new InvalidSignedDocumentException("SigningCertificate cannot be verified");
             }
-
         }
 
         public static VerificationResults VerifyAndGetResults(VerificationParameters parameters)

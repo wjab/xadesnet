@@ -32,7 +32,6 @@
             this.openDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveDialog = new System.Windows.Forms.SaveFileDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbSignCertificate = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFileToSign = new System.Windows.Forms.TextBox();
             this.btnBrowseFileToSign = new System.Windows.Forms.Button();
@@ -47,6 +46,8 @@
             this.txtNodeToSign = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtCertificatePath = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -74,15 +75,6 @@
             this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Signature Certificate";
-            // 
-            // cmbSignCertificate
-            // 
-            this.cmbSignCertificate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSignCertificate.FormattingEnabled = true;
-            this.cmbSignCertificate.Location = new System.Drawing.Point(21, 51);
-            this.cmbSignCertificate.Name = "cmbSignCertificate";
-            this.cmbSignCertificate.Size = new System.Drawing.Size(203, 21);
-            this.cmbSignCertificate.TabIndex = 4;
             // 
             // label2
             // 
@@ -209,9 +201,10 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.txtCertificatePath);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.lblWithValue);
-            this.groupBox2.Controls.Add(this.cmbSignCertificate);
             this.groupBox2.Controls.Add(this.txtPropertyValue);
             this.groupBox2.Controls.Add(this.chkAddProperty);
             this.groupBox2.Controls.Add(this.txtPropertyName);
@@ -221,6 +214,23 @@
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(439, 30);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(34, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtCertificatePath
+            // 
+            this.txtCertificatePath.Location = new System.Drawing.Point(124, 32);
+            this.txtCertificatePath.Name = "txtCertificatePath";
+            this.txtCertificatePath.Size = new System.Drawing.Size(309, 20);
+            this.txtCertificatePath.TabIndex = 18;
             // 
             // FXadesSign
             // 
@@ -233,7 +243,6 @@
             this.Name = "FXadesSign";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "XAdES Signature";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -248,7 +257,6 @@
         private System.Windows.Forms.OpenFileDialog openDialog;
         private System.Windows.Forms.SaveFileDialog saveDialog;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbSignCertificate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFileToSign;
         private System.Windows.Forms.Button btnBrowseFileToSign;
@@ -263,6 +271,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtNodeToSign;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtCertificatePath;
     }
 }
 

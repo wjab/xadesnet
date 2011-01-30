@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
 using XadesNetLib.XAdES;
-using XadesNetLib.Certificates;
 
 namespace XadesNet
 {
@@ -34,16 +33,9 @@ namespace XadesNet
 
         private X509Certificate2 GetSelectedCertificate()
         {
-            return (X509Certificate2)cmbSignCertificate.SelectedItem;
+            return (new X509Certificate2(txtCertificatePath.Text));            
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            var certificates = CertificatesHelper.GetCertificatesFrom(CertificateStore.My);
-            cmbSignCertificate.DisplayMember = "Subject";
-            cmbSignCertificate.DataSource = certificates;
-        }
-
+       
         private void btnBrowseFileToSign_Click(object sender, EventArgs e)
         {
             openDialog.ShowDialog();
@@ -60,6 +52,16 @@ namespace XadesNet
             lblWithValue.Enabled = chkAddProperty.Checked;
             txtPropertyName.Enabled = chkAddProperty.Checked;
             txtPropertyValue.Enabled = chkAddProperty.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Certificate files (*.p12) | *.p12";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtCertificatePath.Text = dialog.FileName;
+            }
         }
     }
 }

@@ -12,22 +12,34 @@ namespace XadesNet
 
         private void btnSign_Click(object sender, EventArgs e)
         {
-            new FXmlDsigSign().ShowDialog();
+            using (var fXmlDsigSign = new FXmlDsigSign())
+            {
+                fXmlDsigSign.ShowDialog();
+            }
         }
-
+        
         private void btnValidate_Click(object sender, EventArgs e)
         {
-            new FXmlDsigVerify().ShowDialog();
+            using (var fXmlDsigVerify = new FXmlDsigVerify())
+            {
+                fXmlDsigVerify.ShowDialog();
+            }
         }
 
         private void btnXAdESSign_Click(object sender, EventArgs e)
         {
-            new FXadesSign().ShowDialog();
+            using (var fXadesSign = new FXadesSign())
+            {
+                fXadesSign.ShowDialog();
+            }
         }
 
         private void btnXAdESVerify_Click(object sender, EventArgs e)
         {
-            new FXadesVerify().ShowDialog();
+            using (var fXadesVerify = new FXadesVerify())
+            {
+                fXadesVerify.ShowDialog();
+            }
         }
     }
 }

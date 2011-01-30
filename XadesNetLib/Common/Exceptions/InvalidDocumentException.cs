@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System;
 
-namespace XadesNetLib.Exceptions
+namespace XadesNetLib.Common.Exceptions
 {
     [Serializable]
     class InvalidDocumentException : Exception
@@ -16,13 +16,13 @@ namespace XadesNetLib.Exceptions
         }
 
         public InvalidDocumentException(string message,
-      Exception innerException)
+                                        Exception innerException)
             : base(message, innerException)
         {
         }
 
         protected InvalidDocumentException(SerializationInfo info,
-      StreamingContext context)
+                                           StreamingContext context)
             : base(info, context)
         {
         }

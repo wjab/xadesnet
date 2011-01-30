@@ -3,8 +3,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 using XadesNetLib.Common;
-using XadesNetLib.Exceptions;
-using XadesNetLib.Xml;
+using XadesNetLib.Common.Exceptions;
+using XadesNetLib.Utils.Xml;
 using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Operations.Signers;
 

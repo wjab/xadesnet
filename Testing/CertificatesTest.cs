@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using XadesNetLib.Certificates;
-using XadesNetLib.Certificates.Exceptions;
+using XadesNetLib.Utils.Certificates;
+using XadesNetLib.Utils.Certificates.Exceptions;
 
 namespace Testing
 {

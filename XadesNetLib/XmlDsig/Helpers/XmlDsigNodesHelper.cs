@@ -2,8 +2,8 @@
 using System.Security.Cryptography.Xml;
 using System.Xml;
 using XadesNetLib.Common;
-using XadesNetLib.Exceptions;
-using XadesNetLib.Xml;
+using XadesNetLib.Common.Exceptions;
+using XadesNetLib.Utils.Xml;
 
 namespace XadesNetLib.XmlDsig.Helpers
 {
@@ -15,7 +15,7 @@ namespace XadesNetLib.XmlDsig.Helpers
 
         internal static bool ObjectNodeWithIdAsUri(XmlElement n, string uri)
         {
-            return "Object".Equals(n.Name) &&
+            return "Object".Equals(n.LocalName) &&
                    SignedXml.XmlDsigNamespaceUrl.Equals(n.NamespaceURI) &&
                    uri.Equals(XmlHelper.AttributeOf(n, "Id"));
         }
@@ -23,29 +23,29 @@ namespace XadesNetLib.XmlDsig.Helpers
         internal static bool IsSignedInfoNode(XmlElement node)
         {
             if (node == null) return false;
-            return "SignedInfo".Equals(node.Name) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
+            return "SignedInfo".Equals(node.LocalName) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
         }
         internal static bool IsX509Certificate(XmlElement node)
         {
-            return "X509Certificate".Equals(node.Name) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
+            return "X509Certificate".Equals(node.LocalName) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
         }
         internal static bool IsX509Data(XmlElement node)
         {
-            return "X509Data".Equals(node.Name) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
+            return "X509Data".Equals(node.LocalName) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
         }
         internal static bool IsKeyInfo(XmlElement node)
         {
-            return "KeyInfo".Equals(node.Name) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
+            return "KeyInfo".Equals(node.LocalName) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
         }
         internal static bool IsSignatureNode(XmlElement node)
         {
             if (node == null) throw new Exception("Node cannot be null");
-            return "Signature".Equals(node.Name) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
+            return "Signature".Equals(node.LocalName) && SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
         }
         internal static bool IsReferenceToOriginalContent(XmlElement node)
         {
             if (node == null) return false;
-            var nameIsReference = "Reference".Equals(node.Name);
+            var nameIsReference = "Reference".Equals(node.LocalName);
             var nameSpaceIsXmlDSig = SignedXml.XmlDsigNamespaceUrl.Equals(node.NamespaceURI);
             var typeAttribute = node.Attributes["Type"];
             var typeIsNotSignatureProperties = true;
@@ -72,7 +72,7 @@ namespace XadesNetLib.XmlDsig.Helpers
                 throw new InvalidParameterException("Xml document must have root element");
             }
 
-            if (document.DocumentElement.Name.Equals("Signature"))
+            if (document.DocumentElement.LocalName.Equals("Signature"))
             {
                 return document.DocumentElement;
             }

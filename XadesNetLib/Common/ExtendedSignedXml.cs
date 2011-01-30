@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography.Xml;
 using System.Xml;
-using XadesNetLib.Xml;
+using XadesNetLib.Utils.Xml;
 
 namespace XadesNetLib.Common
 {

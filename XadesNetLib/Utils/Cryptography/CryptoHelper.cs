@@ -2,7 +2,7 @@
 using System.Text;
 using System;
 
-namespace XadesNetLib.Cryptography
+namespace XadesNetLib.Utils.Cryptography
 {
     public class CryptoHelper
     {

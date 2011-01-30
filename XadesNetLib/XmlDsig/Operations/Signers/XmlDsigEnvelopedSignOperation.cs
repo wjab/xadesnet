@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.Xml;
 using System.Xml;
-using XadesNetLib.Exceptions;
+using XadesNetLib.Common.Exceptions;
 
 namespace XadesNetLib.XmlDsig.Operations.Signers
 {

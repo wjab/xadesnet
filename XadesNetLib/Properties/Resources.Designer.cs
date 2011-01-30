@@ -96,5 +96,21 @@ namespace XadesNetLib.Properties {
                 return ResourceManager.GetString("xmldsig_core_schema", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!-- DTD for XML Schemas: Part 1: Structures
+        ///     Public Identifier: &quot;-//W3C//DTD XMLSCHEMA 200102//EN&quot;
+        ///     Official Location: http://www.w3.org/2001/XMLSchema.dtd --&gt;
+        ///&lt;!-- $Id: XMLSchema.dtd,v 1.31 2001/10/24 15:50:16 ht Exp $ --&gt;
+        ///&lt;!-- Note this DTD is NOT normative, or even definitive. --&gt;           &lt;!--d--&gt;
+        ///&lt;!-- prose copy in the structures REC is the definitive version --&gt;    &lt;!--d--&gt;
+        ///&lt;!-- (which shouldn&apos;t differ from this one except for this --&gt;         &lt;!--d--&gt;
+        ///&lt;!-- comment and entity expansio [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string XMLSchema {
+            get {
+                return ResourceManager.GetString("XMLSchema", resourceCulture);
+            }
+        }
     }
 }

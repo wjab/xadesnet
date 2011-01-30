@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xzep="http://www.ditec.sk/ep/signature_formats/xades_zep/v1.0"
+    xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    targetNamespace="http://www.ditec.sk/ep/signature_formats/xades_zep/v1.0"
+    version="1.0"
+    elementFormDefault="qualified">
+<xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" 
+schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
+
+<xsd:element name="DataEnvelope" type="xzep:DataEnvelopeType"/>
+<xsd:complexType name="DataEnvelopeType">
+    <xsd:sequence>
+        <xsd:element ref="ds:Object" minOccurs="0"
+                maxOccurs="unbounded"/> 
+        <xsd:element ref="ds:Signature"/> 
+    </xsd:sequence> 
+    <xsd:attribute name="Id" type="xsd:ID" use="optional"/>
+</xsd:complexType>
+
+<xsd:element name="SignatureVersion" type="xsd:anyURI"/>
+
+<xsd:element name="ProductInfos" type="xzep:ProductInfosType"/>
+<xsd:complexType name="ProductInfosType">
+    <xsd:sequence>
+        <xsd:element ref="xzep:ProductInfo" maxOccurs="unbounded"/> 
+    </xsd:sequence> 
+</xsd:complexType>
+
+<xsd:element name="ProductInfo" type="xzep:ProductInfoType"/>
+<xsd:complexType name="ProductInfoType">
+    <xsd:sequence>
+        <xsd:element name="ProductName" type="xsd:string"/> 
+        <xsd:element name="ProductVersion" type="xsd:string"/> 
+    </xsd:sequence> 
+</xsd:complexType>
+
+</xsd:schema>

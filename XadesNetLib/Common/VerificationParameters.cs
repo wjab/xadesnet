@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace XadesNetLib.Signatures.Verification
+namespace XadesNetLib.Common
 {
     public class VerificationParameters
     {

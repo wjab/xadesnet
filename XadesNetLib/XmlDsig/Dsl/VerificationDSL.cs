@@ -1,5 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-using XadesNetLib.Signatures.Verification;
+using XadesNetLib.Common;
 using XadesNetLib.XmlDsig.Common;
 using XadesNetLib.XmlDsig.Operations;
 
