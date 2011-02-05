@@ -1,0 +1,31 @@
+<Signature Id="signature" xmlns="http://www.w3.org/2000/09/xmldsig#">
+  <SignedInfo>
+    <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+    <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+    <Reference URI="#documentdata">
+      <Transforms>
+        <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+      </Transforms>
+      <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <DigestValue>ZHYuSAGb6YxHkArVNNrbbdVEVsM=</DigestValue>
+    </Reference>
+  </SignedInfo>
+  <SignatureValue>eNh27y5bdgfYRuvbFFGY/4DEch4GOxz2D90WKHq6x7RdIYRo6PzTNCAnuxFeUDlY+ng+PLgdWU85toZT50sDh80MxtE6ufa2xi3TRxFVETuZ03ucyTOgFZ3P2+nYMAzlkC5mtSnC1Uk96lQT70NWQOvXXN2fQ3tJMvtC3p8KgRM=</SignatureValue>
+  <KeyInfo>
+    <X509Data>
+      <X509Certificate>MIICUTCCAbqgAwIBAgIETOfYoDANBgkqhkiG9w0BAQUFADBtMRAwDgYDVQQGEwdVbmtub3duMRAwDgYDVQQIEwdVbmtub3duMRAwDgYDVQQHEwdVbmtub3duMRAwDgYDVQQKEwdVbmtub3duMRAwDgYDVQQLEwdVbmtub3duMREwDwYDVQQDEwhYQWRFU05ldDAeFw0xMDExMjAxNDE4MDhaFw0xMTExMTUxNDE4MDhaMG0xEDAOBgNVBAYTB1Vua25vd24xEDAOBgNVBAgTB1Vua25vd24xEDAOBgNVBAcTB1Vua25vd24xEDAOBgNVBAoTB1Vua25vd24xEDAOBgNVBAsTB1Vua25vd24xETAPBgNVBAMTCFhBZEVTTmV0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgex4tfWu4tDytJXgS03bsTcrkwQBNh2pUKkwJOPNtBxrS7wbmoK2eqaCIPwTHpeNPaMvDFXwhVwfdCdxQv9mYyFU21Vo/gmjQo9oPIBxSTCXyvf9YrlGLdG8zsSin/vwWN09Oe4IFP0rrcfb7gnB4LT9J3ozpAaN6XtlrInNS0wIDAQABMA0GCSqGSIb3DQEBBQUAA4GBAGs+o5U2WkfSfN4MINJBMa+4eEyPhGy2xmmQL7tEzjvMlcz47CKYVTOZTCS6VdmY2gnt6SoDqhCKL9ZlzJe9XgQuRVh1KxvzT7elVFaJ3EQJ3+27anch+nyKxIDh/Vdh/MfNO93au4gsRhOuSLdj9erE+4iZ+u2EhXWCmD5z0Ror</X509Certificate>
+    </X509Data>
+  </KeyInfo>
+  <Object Id="documentdata">
+    <library xmlns="">
+      <book>
+        <title>Meditations</title>
+        <author>Marcus Aurelius</author>
+      </book>
+      <book>
+        <title>Doctor Who: Human Nature</title>
+        <author>Paul Cornell</author>
+      </book>
+    </library>
+  </Object>
+</Signature>

@@ -37,17 +37,20 @@ namespace XadesNetLib.XmlDsig.Dsl
         }
         public SignDSL Enveloped()
         {
-            _parameters.SignatureFormat = XmlDsigSignatureFormat.Enveloping;
+            _parameters.SignatureFormat = XmlDsigSignatureFormat.Enveloped;
             return this;
         }
         public SignDSL Detached()
         {
+            if (_parameters.InputXml != null) throw new Exception("Detached format need a path to a document file");
             _parameters.SignatureFormat = XmlDsigSignatureFormat.Detached;
             return this;
         }
 
         public SignDSL UsingFormat(XmlDsigSignatureFormat xmlDsigSignatureFormat)
         {
+            if ((xmlDsigSignatureFormat == XmlDsigSignatureFormat.Detached) && (_parameters.InputXml != null)) 
+                throw new Exception("Detached format need a path to a document file");
             _parameters.SignatureFormat = xmlDsigSignatureFormat;
             return this;
         }

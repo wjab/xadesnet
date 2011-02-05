@@ -1,0 +1,16 @@
+<Signature Id="signature" xmlns="http://www.w3.org/2000/09/xmldsig#">
+  <SignedInfo>
+    <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+    <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+    <Reference URI="file://C:/rehacer/Testing/bin/Debug/TestFiles/xmldsig/Input.xml">
+      <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <DigestValue>YF1PoVUbDT3OS4tyKHBN3/h3Oo8=</DigestValue>
+    </Reference>
+  </SignedInfo>
+  <SignatureValue>PuCHzVy/9B6IjFcAP34uNnfyyJPBJk5ai60wGc8Q7qVGbXi0iW99NWXJfa0TmgZeyXGJJokRuD/UvquEzRBErV4ieA2qk4nr3s0/Cd2LUULHWntrLu5x/NWFOeo5Y7Em9LgVJS7zQmZlTATgMOjza5nedleK4p4YWpwqlZIlXHI=</SignatureValue>
+  <KeyInfo>
+    <X509Data>
+      <X509Certificate>MIICUTCCAbqgAwIBAgIETOfYoDANBgkqhkiG9w0BAQUFADBtMRAwDgYDVQQGEwdVbmtub3duMRAwDgYDVQQIEwdVbmtub3duMRAwDgYDVQQHEwdVbmtub3duMRAwDgYDVQQKEwdVbmtub3duMRAwDgYDVQQLEwdVbmtub3duMREwDwYDVQQDEwhYQWRFU05ldDAeFw0xMDExMjAxNDE4MDhaFw0xMTExMTUxNDE4MDhaMG0xEDAOBgNVBAYTB1Vua25vd24xEDAOBgNVBAgTB1Vua25vd24xEDAOBgNVBAcTB1Vua25vd24xEDAOBgNVBAoTB1Vua25vd24xEDAOBgNVBAsTB1Vua25vd24xETAPBgNVBAMTCFhBZEVTTmV0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgex4tfWu4tDytJXgS03bsTcrkwQBNh2pUKkwJOPNtBxrS7wbmoK2eqaCIPwTHpeNPaMvDFXwhVwfdCdxQv9mYyFU21Vo/gmjQo9oPIBxSTCXyvf9YrlGLdG8zsSin/vwWN09Oe4IFP0rrcfb7gnB4LT9J3ozpAaN6XtlrInNS0wIDAQABMA0GCSqGSIb3DQEBBQUAA4GBAGs+o5U2WkfSfN4MINJBMa+4eEyPhGy2xmmQL7tEzjvMlcz47CKYVTOZTCS6VdmY2gnt6SoDqhCKL9ZlzJe9XgQuRVh1KxvzT7elVFaJ3EQJ3+27anch+nyKxIDh/Vdh/MfNO93au4gsRhOuSLdj9erE+4iZ+u2EhXWCmD5z0Ror</X509Certificate>
+    </X509Data>
+  </KeyInfo>
+</Signature>

@@ -31,7 +31,7 @@ namespace XadesNetLib.XmlDsig.Operations
 
         private static VerificationResults PerformValidationFromXml(string xml, VerificationParameters validationParameters)
         {
-            var document = new XmlDocument { PreserveWhitespace = true };
+            var document = new XmlDocument { PreserveWhitespace = false };
             document.LoadXml(xml);
 
             var newsignedXml = new ExtendedSignedXml(document);

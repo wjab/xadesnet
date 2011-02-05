@@ -48,6 +48,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtCertificatePath = new System.Windows.Forms.TextBox();
+            this.txtCertificatePassword = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -201,6 +203,8 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.txtCertificatePassword);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.txtCertificatePath);
             this.groupBox2.Controls.Add(this.label1);
@@ -231,6 +235,22 @@
             this.txtCertificatePath.Name = "txtCertificatePath";
             this.txtCertificatePath.Size = new System.Drawing.Size(309, 20);
             this.txtCertificatePath.TabIndex = 18;
+            // 
+            // txtCertificatePassword
+            // 
+            this.txtCertificatePassword.Location = new System.Drawing.Point(124, 58);
+            this.txtCertificatePassword.Name = "txtCertificatePassword";
+            this.txtCertificatePassword.Size = new System.Drawing.Size(309, 20);
+            this.txtCertificatePassword.TabIndex = 21;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Certificate Password";
             // 
             // FXadesSign
             // 
@@ -273,6 +293,8 @@
         private System.Windows.Forms.TextBox txtNodeToSign;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtCertificatePath;
+        private System.Windows.Forms.TextBox txtCertificatePassword;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<library>
+  <book>
+    <title>Meditations</title>
+    <author>Marcus Aurelius</author>
+  </book>
+  <book>
+    <title>Doctor Who: Human Nature</title>
+    <author>Paul Cornell</author>
+  </book>
+</library>

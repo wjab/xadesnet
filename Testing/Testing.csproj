@@ -41,19 +41,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificatesTest.cs" />
-    <Compile Include="TestingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBase.cs" />
     <Compile Include="XadesBesSignTest.cs" />
     <Compile Include="XmlDSigSignTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cert\certpass.txt" />
     <Content Include="lib\nunit.framework.dll" />
+    <Content Include="TestFiles\xadesbes\Bug38Input.xml" />
+    <Content Include="TestFiles\xmldsig\Input.xml" />
+    <Content Include="TestFiles\xmldsig\OutputEnveloped.xml" />
+    <Content Include="TestFiles\xmldsig\OutputEnveloping.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XadesNetLib\XadesNetLib.csproj">
       <Project>{041B6B99-B4AF-4A68-918F-03FCC9999FCD}</Project>
       <Name>XadesNetLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cert\xadesnettest.p12" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -63,4 +71,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)cert" "$(TargetDir)cert"  /i /d /y
+xcopy "$(ProjectDir)TestFiles" "$(TargetDir)TestFiles" /i /d /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

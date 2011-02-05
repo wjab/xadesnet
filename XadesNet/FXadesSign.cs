@@ -33,7 +33,7 @@ namespace XadesNet
 
         private X509Certificate2 GetSelectedCertificate()
         {
-            return (new X509Certificate2(txtCertificatePath.Text));            
+            return (new X509Certificate2(txtCertificatePath.Text, txtCertificatePassword.Text));            
         }
        
         private void btnBrowseFileToSign_Click(object sender, EventArgs e)

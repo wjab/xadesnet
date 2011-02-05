@@ -31,8 +31,6 @@
             this.btnSign = new System.Windows.Forms.Button();
             this.openDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveDialog = new System.Windows.Forms.SaveFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbSignCertificate = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFileToSign = new System.Windows.Forms.TextBox();
             this.btnBrowseFileToSign = new System.Windows.Forms.Button();
@@ -50,6 +48,11 @@
             this.txtNodeToSign = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtCertificatePassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtCertificatePath = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -68,24 +71,6 @@
             // openDialog
             // 
             this.openDialog.FileName = "openFileDialog1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Signature Certificate";
-            // 
-            // cmbSignCertificate
-            // 
-            this.cmbSignCertificate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSignCertificate.FormattingEnabled = true;
-            this.cmbSignCertificate.Location = new System.Drawing.Point(21, 51);
-            this.cmbSignCertificate.Name = "cmbSignCertificate";
-            this.cmbSignCertificate.Size = new System.Drawing.Size(203, 21);
-            this.cmbSignCertificate.TabIndex = 4;
             // 
             // label2
             // 
@@ -143,7 +128,7 @@
             // 
             this.cmbSignatureFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSignatureFormat.FormattingEnabled = true;
-            this.cmbSignatureFormat.Location = new System.Drawing.Point(262, 51);
+            this.cmbSignatureFormat.Location = new System.Drawing.Point(21, 33);
             this.cmbSignatureFormat.Name = "cmbSignatureFormat";
             this.cmbSignatureFormat.Size = new System.Drawing.Size(203, 21);
             this.cmbSignatureFormat.TabIndex = 12;
@@ -151,7 +136,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(259, 35);
+            this.label4.Location = new System.Drawing.Point(18, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 13);
             this.label4.TabIndex = 11;
@@ -160,7 +145,7 @@
             // chkIncludeTimestamp
             // 
             this.chkIncludeTimestamp.AutoSize = true;
-            this.chkIncludeTimestamp.Location = new System.Drawing.Point(21, 93);
+            this.chkIncludeTimestamp.Location = new System.Drawing.Point(21, 119);
             this.chkIncludeTimestamp.Name = "chkIncludeTimestamp";
             this.chkIncludeTimestamp.Size = new System.Drawing.Size(115, 17);
             this.chkIncludeTimestamp.TabIndex = 13;
@@ -170,7 +155,7 @@
             // txtPropertyName
             // 
             this.txtPropertyName.Enabled = false;
-            this.txtPropertyName.Location = new System.Drawing.Point(124, 129);
+            this.txtPropertyName.Location = new System.Drawing.Point(124, 155);
             this.txtPropertyName.Name = "txtPropertyName";
             this.txtPropertyName.Size = new System.Drawing.Size(129, 20);
             this.txtPropertyName.TabIndex = 14;
@@ -178,7 +163,7 @@
             // chkAddProperty
             // 
             this.chkAddProperty.AutoSize = true;
-            this.chkAddProperty.Location = new System.Drawing.Point(21, 129);
+            this.chkAddProperty.Location = new System.Drawing.Point(21, 155);
             this.chkAddProperty.Name = "chkAddProperty";
             this.chkAddProperty.Size = new System.Drawing.Size(87, 17);
             this.chkAddProperty.TabIndex = 15;
@@ -189,7 +174,7 @@
             // txtPropertyValue
             // 
             this.txtPropertyValue.Enabled = false;
-            this.txtPropertyValue.Location = new System.Drawing.Point(336, 130);
+            this.txtPropertyValue.Location = new System.Drawing.Point(336, 156);
             this.txtPropertyValue.Name = "txtPropertyValue";
             this.txtPropertyValue.Size = new System.Drawing.Size(129, 20);
             this.txtPropertyValue.TabIndex = 16;
@@ -198,7 +183,7 @@
             // 
             this.lblWithValue.AutoSize = true;
             this.lblWithValue.Enabled = false;
-            this.lblWithValue.Location = new System.Drawing.Point(266, 133);
+            this.lblWithValue.Location = new System.Drawing.Point(266, 159);
             this.lblWithValue.Name = "lblWithValue";
             this.lblWithValue.Size = new System.Drawing.Size(59, 13);
             this.lblWithValue.TabIndex = 17;
@@ -240,10 +225,13 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox2.Controls.Add(this.cmbSignatureFormat);
+            this.groupBox2.Controls.Add(this.txtCertificatePassword);
             this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.txtCertificatePath);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.cmbSignatureFormat);
             this.groupBox2.Controls.Add(this.lblWithValue);
-            this.groupBox2.Controls.Add(this.cmbSignCertificate);
             this.groupBox2.Controls.Add(this.txtPropertyValue);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.chkAddProperty);
@@ -256,7 +244,49 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
             // 
-            // FSign
+            // txtCertificatePassword
+            // 
+            this.txtCertificatePassword.Location = new System.Drawing.Point(124, 91);
+            this.txtCertificatePassword.Name = "txtCertificatePassword";
+            this.txtCertificatePassword.Size = new System.Drawing.Size(309, 20);
+            this.txtCertificatePassword.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 94);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Certificate Password";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(439, 63);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(34, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtCertificatePath
+            // 
+            this.txtCertificatePath.Location = new System.Drawing.Point(124, 65);
+            this.txtCertificatePath.Name = "txtCertificatePath";
+            this.txtCertificatePath.Size = new System.Drawing.Size(309, 20);
+            this.txtCertificatePath.TabIndex = 23;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 13);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Signature Certificate";
+            // 
+            // FXmlDsigSign
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -264,10 +294,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSign);
-            this.Name = "FSign";
+            this.Name = "FXmlDsigSign";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "XMLDSig Signature";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FXmlDsigSign_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -281,8 +311,6 @@
         private System.Windows.Forms.Button btnSign;
         private System.Windows.Forms.OpenFileDialog openDialog;
         private System.Windows.Forms.SaveFileDialog saveDialog;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbSignCertificate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFileToSign;
         private System.Windows.Forms.Button btnBrowseFileToSign;
@@ -300,6 +328,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtNodeToSign;
+        private System.Windows.Forms.TextBox txtCertificatePassword;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtCertificatePath;
+        private System.Windows.Forms.Label label6;
     }
 }
 

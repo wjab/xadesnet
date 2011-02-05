@@ -48,23 +48,9 @@ namespace XadesNet
 
         private X509Certificate2 GetSelectedCertificate()
         {
-            return (X509Certificate2)cmbSignCertificate.SelectedItem;
+            return (new X509Certificate2(txtCertificatePath.Text, txtCertificatePassword.Text));         
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            var certificates = CertificatesHelper.GetCertificatesFrom(CertificateStore.My);
-            cmbSignCertificate.DisplayMember = "Subject";
-            cmbSignCertificate.DataSource = certificates;
-            var formats = new List<XmlDsigSignatureFormat>
-                              {
-                                  XmlDsigSignatureFormat.Detached,
-                                  XmlDsigSignatureFormat.Enveloped,
-                                  XmlDsigSignatureFormat.Enveloping
-                              };
-            cmbSignatureFormat.DataSource = formats;
-        }
-
+       
         private void btnBrowseFileToSign_Click(object sender, EventArgs e)
         {
             openDialog.ShowDialog();
@@ -81,6 +67,27 @@ namespace XadesNet
             lblWithValue.Enabled = chkAddProperty.Checked;
             txtPropertyName.Enabled = chkAddProperty.Checked;
             txtPropertyValue.Enabled = chkAddProperty.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Certificate files (*.p12) | *.p12";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtCertificatePath.Text = dialog.FileName;
+            }
+        }
+
+        private void FXmlDsigSign_Load(object sender, EventArgs e)
+        {
+            var formats = new List<XmlDsigSignatureFormat>
+                              {
+                                  XmlDsigSignatureFormat.Detached,
+                                  XmlDsigSignatureFormat.Enveloped,
+                                  XmlDsigSignatureFormat.Enveloping
+                              };
+            cmbSignatureFormat.DataSource = formats;
         }
     }
 }

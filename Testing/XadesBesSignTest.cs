@@ -7,8 +7,16 @@ using XadesNetLib.XAdES;
 namespace Testing
 {
     [TestFixture]
-    public class XadesBesSignTest
+    public class XadesBesSignTest :TestBase
     {
+        private string _bugBasePath = BaseFilesPath + @"\xadesbes\";
+        private string _bug38InputFilePath;
+
+        public XadesBesSignTest()
+        {
+            _bug38InputFilePath = _bugBasePath + "Bug38Input.xml";
+        }
+
         #region Common to all tests
 
         private XmlDocument SignXadesBes(string inputPath, X509Certificate2 selectedCertificate)
@@ -16,39 +24,22 @@ namespace Testing
             return XadesHelper.Sign(inputPath).Using(selectedCertificate).
                 IncludingCertificateInSignature().SignAndGetXml();
         }
-
-        private void ExecuteTest(string inputPath, string resultPath)
-        {
-            var selectedCertificate = GetTestCertificate();
-            var signedDocument = SignXadesBes(inputPath, selectedCertificate);
-            var expectedDocument = GetDocumentFromFile(resultPath);
-
-            Assert.AreEqual(signedDocument, expectedDocument);
-        }
-
-        private object GetDocumentFromFile(string resultPath)
-        {
-            if (File.Exists(resultPath))
-            {
-                return File.ReadAllText(resultPath);
-            }
-            return string.Empty;
-        }
-
-        private X509Certificate2 GetTestCertificate()
-        {
-            return null;
-        }
-
+              
         #endregion
 
-        #region Test definition
-        [Test]
-        private void TestSigns()
+        /// <summary>
+        /// Tests that an output file path is not needed when using the
+        /// .SignAndGetXml() method.
+        /// More info in:
+        /// http://xadesnet.codeplex.com/Thread/View.aspx?ThreadId=243659
+        /// </summary>
+        [Test]        
+        public void TestBug38()
         {
-            ExecuteTest(@"pathEntrada", @"pathresultado");
-        }
-        #endregion
+            X509Certificate2 certificate = GetTestCertificate();
+            XmlDocument document = XadesHelper.Sign(_bug38InputFilePath).Using(certificate).IncludingCertificateInSignature().SignAndGetXml();
 
+            Assert.IsNotNullOrEmpty(document.OuterXml);
+        }
     }
 }

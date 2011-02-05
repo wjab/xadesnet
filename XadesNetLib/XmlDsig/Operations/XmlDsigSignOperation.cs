@@ -30,6 +30,7 @@ namespace XadesNetLib.XmlDsig.Operations
 
         internal void Sign(XmlDsigSignParameters signParameters)
         {
+            if (signParameters.OutputPath == null) throw new InvalidParameterException("Path of signed file cannot be null");
             Sign(signParameters, null);
         }
         internal void Sign(XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
@@ -69,8 +70,7 @@ namespace XadesNetLib.XmlDsig.Operations
         {
             if (signParameters == null) throw new InvalidParameterException("Parameters to sign cannot be null");
             if (signParameters.SignatureCertificate == null) throw new InvalidParameterException("Signer Certificate cannot be null");
-            if (signParameters.InputPath == null) throw new InvalidParameterException("Document to sign cannot be null");
-            if (signParameters.OutputPath == null) throw new InvalidParameterException("Path of signed file cannot be null");
+            if (signParameters.InputPath == null) throw new InvalidParameterException("Document to sign cannot be null");           
         }
         private ExtendedSignedXml GetSignature(XmlDocument inputXml, XmlDsigSignParameters signParameters, Action<ExtendedSignedXml> signedXmlPostProcessing)
         {
