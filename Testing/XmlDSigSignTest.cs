@@ -22,7 +22,7 @@ namespace Testing
         {
             X509Certificate2 certificate = GetTestCertificate();
             XmlDocument document = XmlDsigHelper.Sign(_inputPath).Using(certificate).Enveloped().IncludingCertificateInSignature().SignAndGetXml();
-            String expected = GetDocumentFromFile(_filesBasePath + "OutputEnveloped.xml");
+            String expected = GetXmlStringFromFile(_filesBasePath + "OutputEnveloped.xml");
 
             Assert.AreEqual(expected, document.OuterXml);
         }
@@ -32,9 +32,8 @@ namespace Testing
         {
             X509Certificate2 certificate = GetTestCertificate();
             XmlDocument document = XmlDsigHelper.Sign(_inputPath).Using(certificate).Enveloping().IncludingCertificateInSignature().SignAndGetXml();
-            XmlDocument documentExpected = new XmlDocument();
-            documentExpected.Load(GetDocumentFromFile(_filesBasePath + "OutputEnveloping.xml"));
-            String expected = documentExpected.OuterXml;
+           
+            String expected = GetXmlStringFromFile(_filesBasePath + "OutputEnveloping.xml");
 
             Assert.AreEqual(expected, document.OuterXml);
         }

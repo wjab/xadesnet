@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Xml;
 
 namespace Testing
 {
@@ -25,6 +26,13 @@ namespace Testing
                 return File.ReadAllText(resultPath);
             }
             return string.Empty;
+        }
+
+        protected string GetXmlStringFromFile(string path)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+            return doc.OuterXml;
         }
 
         protected X509Certificate2 GetTestCertificate()
